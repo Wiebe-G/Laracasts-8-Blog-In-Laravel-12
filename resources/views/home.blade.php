@@ -4,19 +4,27 @@
 
 		@forelse($posts as $post)
 			<article>
-				<h1>
-					<a href="/posts/{{ $post->slug }}">
-						Titel: {{ $post->title }}
+				<h1 class="font-bold">
+					<a href="/posts/{{ $post->slug }}" class="link link-primary">
+						{!! $post->title !!}
 					</a>
 				</h1>
-				<p>Datum: {{ $post->date }}</p>
-				{{-- <p>Body: <?= $post->body ?></p> --}}
+				<span>Aangemaakt om: {{ $post->created_at }} door <a href="/authors/{{ $post->author->username }}"
+						class="link link-primary">{{ $post->author->name }}</a></span>
+				<br>
+				@if ($post->updated_at->gt($post->created_at->addSeconds(5)))
+					<span>Laatst bewerkt om: {{ $post->updated_at }}</span>
+				@endif
+				<p>
+					Categorie:
+					<a href="/categories/{{ $post->category->slug }}" class="link link-primary">
+						{{ $post->category->name }}</a>
+				</p>
 				<p>Excerpt: {{ $post->excerpt }}</p>
 			</article>
-			<div class="mb-5 mt-5 h-px w-full bg-gray-500"></div>
+			<div class="mb-5 mt-5 h-1 w-full bg-gray-500"></div>
 		@empty
 			<div>Geen posts gevonden</div>
-			< @endforelse
+		@endforelse
 	</div>
-
 </x-layout>
