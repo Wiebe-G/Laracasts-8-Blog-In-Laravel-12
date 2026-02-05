@@ -14,8 +14,10 @@ class PageController extends Controller
 {
     public function HomePage()
     {
+        $posts = Post::latest();
+
         return view('home', [
-            'posts'=> Post::latest()->get(),
+            'posts'=> Post::latest()->filter(request()->only('search'))->get(),
             'categories' => Category::all()
         ]);
     }
