@@ -15,7 +15,8 @@ class PageController extends Controller
     public function HomePage()
     {
         return view('home', [
-            'posts'=> Post::latest()->get()
+            'posts'=> Post::latest()->get(),
+            'categories' => Category::all()
         ]);
     }
 
@@ -29,14 +30,17 @@ class PageController extends Controller
     public function CategoryPage (Category $category)
     {
         return view('home', [
-        'posts'=>$category->posts
+        'posts'=>$category->posts,
+        'currentCategory' => $category,
+        'categories'=>Category::all()
         ]);
     }
 
     public function AuthorPage(User $author)
     {
         return view('home', [
-            'posts'=> $author->posts
+            'posts'=> $author->posts,
+            'categories'=>Category::all()
         ]);
     }
 }
