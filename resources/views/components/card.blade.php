@@ -14,7 +14,7 @@
 
 				<div class="mt-4">
 					<h1 class="text-3xl">
-						<a href="/posts/{{ $post->slug }}" class="link link-primary">
+						<a href="?posts={{ $post->slug }}" class="link link-primary">
 							{{ $post->title }}
 						</a>
 					</h1>
@@ -30,18 +30,13 @@
 
 			<div class="mt-4 space-y-4 text-sm">
 				{!! $post->excerpt !!}
-
-				<p class="mt-4">
-					Categorie: <a href="/categories/{{ $post->category->slug }}"
-						class="link link-primary">{{ $post->category->name }}</a>
-				</p>
 			</div>
 
 			<footer class="mt-8 flex items-center justify-between">
 				<div class="flex items-center text-sm">
 					<img src="/images/lary-avatar.svg" alt="Lary avatar">
 					<div class="ml-3">
-						<h5 class="font-bold"><a href="/authors/{{ $post->author->username }}">{{ $post->author->name }}</a></h5>
+						<h5 class="font-bold"><a href="?authors={{ $post->author->username }}">{{ $post->author->name }}</a></h5>
 					</div>
 				</div>
 

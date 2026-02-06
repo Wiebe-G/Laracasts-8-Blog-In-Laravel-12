@@ -14,11 +14,15 @@ class PageController extends Controller
 {
     public function HomePage()
     {
-        $posts = Post::latest();
+        // $posts = Post::latest();
 
         return view('home', [
-            'posts'=> Post::latest()->filter(request()->only('search'))->get(),
-            'categories' => Category::all()
+            'posts'=> Post::latest()->filter(
+                request(['search', 'category', 'author'])
+                )->get(),
+                'categories' => Category::all(),
+                'currentCategory' => Category::firstWhere('slug', request('category'))
+            
         ]);
     }
 
@@ -42,7 +46,8 @@ class PageController extends Controller
     {
         return view('home', [
             'posts'=> $author->posts,
-            'categories'=>Category::all()
+            'categories' => Category::all(),
+            'currentCategory' => Category::firstWhere('slug', request('category'))
         ]);
     }
 }

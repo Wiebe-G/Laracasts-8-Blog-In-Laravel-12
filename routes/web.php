@@ -7,8 +7,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [PageController::class, 'HomePage'])->name('home');
 
-Route::get('posts/{post}', [PageController::class, 'PostsPage'])->name('posts');
+Route::get('posts={post:slug}', [PageController::class, 'PostsPage'])->name('posts');
 
-Route::get('categories/{category:slug}', [PageController::class, 'CategoryPage'])->name('category');
+Route::get('category={category:slug}', [PageController::class, 'CategoryPage'])->name('category');
 
-Route::get('authors/{author:username}', [PageController::class, 'AuthorPage']);
+Route::get('authors={author:username}', [PageController::class, 'AuthorPage']);
