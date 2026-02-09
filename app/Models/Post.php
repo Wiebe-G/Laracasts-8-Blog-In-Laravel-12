@@ -16,35 +16,26 @@ class Post extends Model
         'body',
         'slug',
         'category_id',
-        'user_id'
+        'user_id',
     ];
 
     protected $with = [
-        'category', 'author'
+        'category', 'author',
     ];
 
     public function scopeFilter($query, array $filters)
     {
         $query
-            ->when($filters['search'] ?? false, fn($query, $search) =>
-                    $query->where(fn($query) =>
-                        $query->where('title', 'like', '%' . $search . '%')
-                            ->orWhere('body', 'like', '%' . $search . '%')
-                    )
-                );
-									
-        $query
-            ->when($filters['category'] ?? false, fn($query, $category) =>
-                $query->whereHas('category', fn ($query) =>
-                    $query->where('slug', $category)
-                )
+            ->when($filters['search'] ?? false, fn ($query, $search) => $query->where(fn ($query) => $query->where('title', 'like', '%'.$search.'%')
+                ->orWhere('body', 'like', '%'.$search.'%'))
             );
 
         $query
-            ->when($filters['author'] ?? false, fn($query, $author) =>
-                $query->whereHas('author', fn ($query) =>
-                    $query->where('username', $author)
-                )
+            ->when($filters['category'] ?? false, fn ($query, $category) => $query->whereHas('category', fn ($query) => $query->where('slug', $category))
+            );
+
+        $query
+            ->when($filters['author'] ?? false, fn ($query, $author) => $query->whereHas('author', fn ($query) => $query->where('username', $author))
             );
     }
 

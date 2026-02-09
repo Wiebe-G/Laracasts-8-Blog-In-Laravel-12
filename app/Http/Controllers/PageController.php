@@ -10,24 +10,24 @@ class PageController extends Controller
 {
     public function HomePage()
     {
-        return view('home', [
+        return view('posts.home', [
             'posts' => Post::latest()->filter(
                 request(['search', 'category', 'author'])
             )
-                ->paginate()->withQueryString(),
+                ->paginate(10)->withQueryString(),
         ]);
     }
 
     public function PostsPage(Post $post)
     {
-        return view('post', [
+        return view('posts.post', [
             'post' => $post,
         ]);
     }
 
     public function CategoryPage(Category $category)
     {
-        return view('home', [
+        return view('posts.home', [
             'posts' => $category->posts,
             'currentCategory' => $category,
             'categories' => Category::all(),
@@ -36,7 +36,7 @@ class PageController extends Controller
 
     public function AuthorPage(User $author)
     {
-        return view('home', [
+        return view('posts.home', [
             'posts' => $author->posts,
             'categories' => Category::all(),
             'currentCategory' => Category::firstWhere('slug', request('category')),

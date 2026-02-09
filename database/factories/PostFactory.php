@@ -13,6 +13,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class PostFactory extends Factory
 {
     use HasFactory;
+
     /**
      * Define the model's default state.
      *
@@ -21,12 +22,12 @@ class PostFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_id'=>User::factory(),
-            'category_id'=>Category::factory(),
-            'title'=>$this->faker->sentence(),
-            'slug'=>$this->faker->slug(),
-            'excerpt'=>'<p>' . implode('</p><p>',$this->faker->paragraphs(2)) . '</p>',
-            'body'=>'<p>' . implode('</p><p>',$this->faker->paragraphs(6)) . '</p>',
+            'user_id' => User::factory(),
+            'category_id' => Category::factory(),
+            'title' => $this->faker->sentence(),
+            'slug' => $this->faker->slug(),
+            'excerpt' => '<p>'.implode('</p><p>', $this->faker->paragraphs(2)).'</p>',
+            'body' => '<p>'.implode('</p><p>', $this->faker->paragraphs(6)).'</p>',
         ];
     }
 }

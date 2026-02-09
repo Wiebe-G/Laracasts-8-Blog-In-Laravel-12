@@ -4,62 +4,79 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Laracasts 8 blog in laravel 12 gemaakt door Wiebe :)</title>
+	<title>{{ isset($title) ? $title . ' - Blog' : 'Blog' }}</title>
 	<link rel="preconnect" href="<https://fonts.bunny.net>">
-	<link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600,700" rel="stylesheet" />
-	<link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
-	<link href="https://cdn.jsdelivr.net/npm/daisyui@5/themes.css" rel="stylesheet" type="text/css" />
+	<link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600,700" rel="stylesheet"/>
+	<link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css"/>
+	<link href="https://cdn.jsdelivr.net/npm/daisyui@5/themes.css" rel="stylesheet" type="text/css"/>
 	<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 	@vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
 <body style="font-family: Open Sans, sans-serif">
-	<section class="px-6 py-8">
-		<nav class="md:flex md:items-center md:justify-between">
-			<div>
-				<a href="/">
-					<img src="/images/logo.svg" alt="Laracasts Logo" width="165" height="16">
-				</a>
+<section class="px-6 py-8">
+	<nav class="md:flex md:items-center md:justify-between navbar">
+		<div class="navbar-start">
+			<a href="/">
+				<img src="/images/logo.svg" alt="Laracasts Logo" width="165" height="16">
+			</a>
+		</div>
+
+		<div class="mt-8 md:mt-0 navbar-center">
+
+{{--			<a href="#Footer"--}}
+{{--			   class="ml-3 rounded-full bg-blue-500 px-5 py-3 text-xs font-semibold uppercase text-white">--}}
+{{--				Subscribe for Updates--}}
+{{--			</a>--}}
+		</div>
+
+		<div class="navbar-end gap-2">
+			@auth
+				<span class="text-sm">Welkom, {{ auth()->user()->username }}</span>
+				<form method="POST" action="/logout" class="inline">
+					@csrf
+					<button type="submit" class="btn btn-ghost btn-sm">Log uit</button>
+				</form>
+			@else
+				<a href="/login" class="btn btn-ghost btn-sm">Log in</a>
+				<a href="/register" class="btn btn-primary btn-sm">Maak account aan</a>
+			@endauth
+		</div>
+	</nav>
+
+	{{-- Chirper flash message --}}
+	<x-flash/>
+
+	<main class="mx-auto mt-6 max-w-6xl space-y-6 lg:mt-20">
+		{{ $slot }}
+	</main>
+
+	<footer class="mt-16 rounded-xl border border-black border-opacity-5 bg-gray-100 px-10 py-16 text-center"
+	        id="Footer">
+		<img src="/images/lary-newsletter-icon.svg" alt="" class="mx-auto -mb-6" style="width: 145px;">
+		<h5 class="text-3xl">Stay in touch with the latest posts</h5>
+		<p class="mt-3 text-sm">Promise to keep the inbox clean. No bugs.</p>
+
+		<div class="mt-10">
+			<div class="relative mx-auto inline-block rounded-full lg:bg-gray-200">
+
+				<form method="POST" action="#" class="text-sm lg:flex">
+					<div class="flex items-center lg:px-5 lg:py-3">
+						<label for="email" class="hidden lg:inline-block">
+							<img src="/images/mailbox-icon.svg" alt="mailbox letter">
+						</label>
+
+						<input id="email" type="text" placeholder="Your email address"
+						       class="py-2 pl-4 focus-within:outline-none lg:bg-transparent lg:py-0">
+					</div>
+
+					<button type="submit"
+					        class="mt-4 rounded-full bg-blue-500 px-8 py-3 text-xs font-semibold uppercase text-white transition-colors duration-300 hover:bg-blue-600 lg:ml-3 lg:mt-0">
+						Subscribe
+					</button>
+				</form>
 			</div>
-
-			<div class="mt-8 md:mt-0">
-				<a href="/" class="text-xs font-bold uppercase">Home Page</a>
-
-				<a href="#" class="ml-3 rounded-full bg-blue-500 px-5 py-3 text-xs font-semibold uppercase text-white">
-					Subscribe for Updates
-				</a>
-			</div>
-		</nav>
-
-		<main class="mx-auto mt-6 max-w-6xl space-y-6 lg:mt-20">
-			{{ $slot }}
-		</main>
-
-		<footer class="mt-16 rounded-xl border border-black border-opacity-5 bg-gray-100 px-10 py-16 text-center">
-			<img src="/images/lary-newsletter-icon.svg" alt="" class="mx-auto -mb-6" style="width: 145px;">
-			<h5 class="text-3xl">Stay in touch with the latest posts</h5>
-			<p class="mt-3 text-sm">Promise to keep the inbox clean. No bugs.</p>
-
-			<div class="mt-10">
-				<div class="relative mx-auto inline-block rounded-full lg:bg-gray-200">
-
-					<form method="POST" action="#" class="text-sm lg:flex">
-						<div class="flex items-center lg:px-5 lg:py-3">
-							<label for="email" class="hidden lg:inline-block">
-								<img src="/images/mailbox-icon.svg" alt="mailbox letter">
-							</label>
-
-							<input id="email" type="text" placeholder="Your email address"
-								class="py-2 pl-4 focus-within:outline-none lg:bg-transparent lg:py-0">
-						</div>
-
-						<button type="submit"
-							class="mt-4 rounded-full bg-blue-500 px-8 py-3 text-xs font-semibold uppercase text-white transition-colors duration-300 hover:bg-blue-600 lg:ml-3 lg:mt-0">
-							Subscribe
-						</button>
-					</form>
-				</div>
-			</div>
-		</footer>
-	</section>
+		</div>
+	</footer>
+</section>
 </body>

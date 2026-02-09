@@ -25,8 +25,8 @@ class DatabaseSeeder extends Seeder
 
         $users->each(function ($user) {
             Post::factory(5)->create([
-                'user_id'=>$user->id
-            ]); 
+                'user_id' => $user->id,
+            ]);
         });
     }
 }
