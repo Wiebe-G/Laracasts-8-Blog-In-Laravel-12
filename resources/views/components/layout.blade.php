@@ -4,13 +4,13 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>{{ isset($title) ? $title . ' - Blog' : 'Blog' }}</title>
+	<title>{{ $title ?? 'Blog' }}</title>
 	<link rel="preconnect" href="<https://fonts.bunny.net>">
 	<link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600,700" rel="stylesheet"/>
 	<link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css"/>
 	<link href="https://cdn.jsdelivr.net/npm/daisyui@5/themes.css" rel="stylesheet" type="text/css"/>
 	<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-	@vite(['resources/css/app.css', 'resources/js/app.js'])
+	@vite(['resources/css/app.css', 'resources/js/app.ts'])
 </head>
 
 <body style="font-family: Open Sans, sans-serif">
@@ -32,7 +32,12 @@
 
 		<div class="navbar-end gap-2">
 			@auth
-				<span class="text-sm">Welkom, {{ auth()->user()->username }}</span>
+				<span class="text-sm">
+					<a href="/">
+						{{-- Link naar profiel pagina--}}
+						Welkom, {{ auth()->user()->username }}
+					</a>
+				</span>
 				<form method="POST" action="/logout" class="inline">
 					@csrf
 					<button type="submit" class="btn btn-ghost btn-sm">Log uit</button>

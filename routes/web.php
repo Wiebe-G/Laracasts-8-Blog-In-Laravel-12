@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\PageController;
 use Illuminate\Support\Facades\Route;
 
@@ -10,9 +11,7 @@ Route::get('/', [PageController::class, 'HomePage'])->name('home');
 
 Route::get('/posts/{post:slug}', [PageController::class, 'PostsPage'])->name('posts');
 
-Route::get('category={category:slug}', [PageController::class, 'CategoryPage'])->name('category');
-
-Route::get('/authors/{author:username}', [PageController::class, 'AuthorPage']);
+Route::post('/posts/{post:slug}/comments', [CommentController::class, 'store'])->name('comments.store');
 
 // auth routes
 Route::get('register', [RegisterController::class, 'create']);
