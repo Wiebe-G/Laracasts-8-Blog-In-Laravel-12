@@ -27,20 +27,22 @@
 							@csrf
 							<x-submit-button>Like post (wip)</x-submit-button>
 						</form>
-						<form method="POST" action="/bookmark/{{ $post->id }}">
-							@csrf
-							@if($post->users()->where('user_id', auth()->id())->exists())
-								<span>
-									{{--TODO: toggle voor bookmarks maken--}}
-									Deze post staat in uw bookmarks.
-									<br>
-									Het is momenteel nog niet mogelijk om deze te verwijderen, maar er wordt aan gewerkt.
-								</span>
-							@else
-								<x-submit-button>Bookmark post (wip)</x-submit-button>
-							@endif
 
-						</form>
+						@if($post->users()->where('user_id', auth()->id())->exists())
+							<form method="POST" action="/user/settings/bookmarks/{{ $post->id }}">
+								@csrf
+								@method('DELETE')
+								{{--Todo: confirm voor verwijderen--}}
+
+								<x-submit-button>Verwijder post</x-submit-button>
+							</form>
+						@else
+							<form method="POST" action="/bookmark/{{ $post->id }}">
+								@csrf
+								<x-submit-button>Bookmark post</x-submit-button>
+							</form>
+						@endif
+
 					@else
 						<span>
 							<a href="/login" class="link link-primary">Log in</a> om posts te liken of te bookmarken

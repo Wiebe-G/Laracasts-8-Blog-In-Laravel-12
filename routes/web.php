@@ -47,9 +47,11 @@ Route::middleware('admin')->group(function () {
 
 Route::middleware('auth')->group(function () {
 	// bookmarks
-	// Route::get('/bookmark/{post:id}/bookmark', [BookmarkController::class, 'update'])->name('bookmark.update');
 	Route::post('/bookmark/{post:id}', [BookmarkController::class, 'update'])->name('bookmark.update');
+	Route::get('/user/settings/bookmarks', [BookmarkController::class, 'show'])->name('user.bookmarks');
+
+	Route::delete('user/settings/bookmarks/{post:id}', [BookmarkController::class, 'destroy'])->name('user.bookmarks.destroy');
 
 	// user settings
-	Route::get('/user/{user:id}/settings', Usercontroller::class)->name('user.settings');
+	Route::get('/user/settings', Usercontroller::class)->name('user.settings');
 });

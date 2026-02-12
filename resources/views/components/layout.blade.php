@@ -4,7 +4,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>{{ $title ?? 'Blog' }}</title>
+	<title>{{ isset($title) ? $title . ' - Blog' : 'Blog' }}</title>
 	<link rel="preconnect" href="<https://fonts.bunny.net>">
 	<link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600,700" rel="stylesheet"/>
 	<link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css"/>
@@ -40,7 +40,7 @@
 						</x-dropdown-item>
 					@endcan
 					<x-dropdown-item
-						href="/user/{{ auth()->id() }}/settings">
+						href="/user/settings/bookmarks">
 						Instellingen
 					</x-dropdown-item>
 					<x-dropdown-item href="#" x-date="{}"

@@ -35,9 +35,13 @@ class BookmarkController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show()
     {
-        //
+		$user = auth()->user();
+		$posts = $user->bookmarkedPosts()->paginate(10);
+        return view('user-settings.bookmarks.show', [
+			'posts' => $posts
+		]);
     }
 
     /**
@@ -51,7 +55,7 @@ class BookmarkController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Post $post, User $user)
+    public function update(Post $post)
     {
 		$user = auth()->user();
 		$user->bookmarkedPosts()->attach($post->id);
@@ -61,8 +65,12 @@ class BookmarkController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Post $post)
     {
-        //
+        $user = auth()->user();
+
+		$user->bookmarkedPosts()->toggle($post->id);
+
+		return back()->with('success', 'Bookmark verwijderd');
     }
 }
