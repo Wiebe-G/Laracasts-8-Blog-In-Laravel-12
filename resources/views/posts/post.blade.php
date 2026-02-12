@@ -18,8 +18,38 @@
 						<h5 class="font-bold">
 							<a href="/?author={{ $post->author->username }}">{{ $post->author->name }}</a>
 						</h5>
+
 					</div>
 				</div>
+				<div class="flex flex-col space-y-2">
+					@auth
+						<form method="POST" action="/like/{{ $post->slug }}/like">
+							@csrf
+							<x-submit-button>Like post (wip)</x-submit-button>
+						</form>
+
+						@if($post->users()->where('user_id', auth()->id())->exists())
+							<form method="POST" action="/user/settings/bookmarks/{{ $post->id }}">
+								@csrf
+								@method('DELETE')
+								{{--Todo: confirm voor verwijderen--}}
+
+								<x-submit-button>Verwijder post</x-submit-button>
+							</form>
+						@else
+							<form method="POST" action="/bookmark/{{ $post->id }}">
+								@csrf
+								<x-submit-button>Bookmark post</x-submit-button>
+							</form>
+						@endif
+
+					@else
+						<span>
+							<a href="/login" class="link link-primary">Log in</a> om posts te liken of te bookmarken
+						</span>
+					@endauth
+				</div>
+
 			</div>
 
 			<div class="col-span-8">

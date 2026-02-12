@@ -21,6 +21,7 @@ return new class extends Migration
             $table->text('excerpt');
             $table->text('body');
 			$table->boolean('published')->default(false);
+			$table->unsignedBigInteger('likes')->default(0);
             $table->timestamps();
             $table->timestamp('published_at')->useCurrent();
         });
