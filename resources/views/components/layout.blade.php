@@ -39,6 +39,10 @@
 							Alle posts
 						</x-dropdown-item>
 					@endcan
+					<x-dropdown-item
+						href="/user/{{ auth()->id() }}/settings">
+						Instellingen
+					</x-dropdown-item>
 					<x-dropdown-item href="#" x-date="{}"
 					                 @click.prevent="document.querySelector('#logout-form').submit()">Log uit
 					</x-dropdown-item>

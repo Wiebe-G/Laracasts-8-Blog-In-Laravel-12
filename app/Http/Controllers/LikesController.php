@@ -13,6 +13,6 @@ class LikesController extends Controller
      */
     public function __invoke(Post $post, User $user)
     {
-        return 'post geliket';
+        return back()->with('success', 'Post geliket!');
     }
 }

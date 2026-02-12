@@ -4,9 +4,11 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\BookmarkController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\LikesController;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [PageController::class, 'HomePage'])->name('home');
@@ -44,6 +46,10 @@ Route::middleware('admin')->group(function () {
 });
 
 Route::middleware('auth')->group(function () {
-	// like
-	Route::post('/posts/{post:slug}/like', LikesController::class);
+	// bookmarks
+	// Route::get('/bookmark/{post:id}/bookmark', [BookmarkController::class, 'update'])->name('bookmark.update');
+	Route::post('/bookmark/{post:id}', [BookmarkController::class, 'update'])->name('bookmark.update');
+
+	// user settings
+	Route::get('/user/{user:id}/settings', Usercontroller::class)->name('user.settings');
 });

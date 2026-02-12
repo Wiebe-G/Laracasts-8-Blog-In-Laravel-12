@@ -10,8 +10,11 @@
 			<ul>
 				<li><a href="/admin/posts/create"
 				       class="{{ request()->is('admin/posts/create') ? 'text-blue-500' : '' }}">Nieuwe post</a></li>
-				<li><a href="/admin/posts/" class="{{ request()->is('admin/posts') ? 'text-blue-500' : '' }}">Alle
-						posts</a></li>
+				<li>
+					<a href="/admin/posts/" class="{{ request()->is('admin/posts') ? 'text-blue-500' : '' }}">
+						Alle posts
+					</a>
+				</li>
 			</ul>
 		</aside>
 
