@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" data-theme="lofi">
+<html lang="en" data-theme="lofi" class="scroll-smooth">
 
 <head>
 	<meta charset="UTF-8">
@@ -22,30 +22,42 @@
 			</a>
 		</div>
 
-		<div class="mt-8 md:mt-0 navbar-center">
-
-{{--			<a href="#Footer"--}}
-{{--			   class="ml-3 rounded-full bg-blue-500 px-5 py-3 text-xs font-semibold uppercase text-white">--}}
-{{--				Subscribe for Updates--}}
-{{--			</a>--}}
-		</div>
-
 		<div class="navbar-end gap-2">
 			@auth
-				<span class="text-sm">
-					<a href="/">
-						{{-- Link naar profiel pagina--}}
-						Welkom, {{ auth()->user()->username }}
-					</a>
-				</span>
-				<form method="POST" action="/logout" class="inline">
-					@csrf
-					<button type="submit" class="btn btn-ghost btn-sm">Log uit</button>
-				</form>
+				<x-dropdown>
+					<x-slot name="trigger">
+						<button class="text-sm">
+							Welkom, {{ auth()->user()->username }}
+						</button>
+					</x-slot>
+
+					@can('admin')
+						<x-dropdown-item href="/admin/posts/create" :active="request()->is('admin/posts/create')">
+							Nieuwe post
+						</x-dropdown-item>
+						<x-dropdown-item href="/admin/posts/" :active="request()->is('admin/posts/view')">
+							Alle posts
+						</x-dropdown-item>
+					@endcan
+					<x-dropdown-item href="#" x-date="{}"
+					                 @click.prevent="document.querySelector('#logout-form').submit()">Log uit
+					</x-dropdown-item>
+
+					<form id="logout-form" method="POST" action="/logout" class="hidden">
+						@csrf
+						<button type="submit" class="btn btn-ghost btn-sm">Log uit</button>
+					</form>
+				</x-dropdown>
 			@else
 				<a href="/login" class="btn btn-ghost btn-sm">Log in</a>
 				<a href="/register" class="btn btn-primary btn-sm">Maak account aan</a>
 			@endauth
+			<div class="mt-8 md:mt-0 navbar-center">
+				<a href="#Footer"
+				   class="ml-3 rounded-full bg-blue-500 px-5 py-3 text-xs font-semibold uppercase text-white">
+					Subscribe for Updates
+				</a>
+			</div>
 		</div>
 	</nav>
 
@@ -64,7 +76,7 @@
 
 		<div class="mt-10">
 			<div class="relative mx-auto inline-block rounded-full lg:bg-gray-200">
-
+				{{--Wou dit doen maar mailchimp signup werkt niet  --}}
 				<form method="POST" action="#" class="text-sm lg:flex">
 					<div class="flex items-center lg:px-5 lg:py-3">
 						<label for="email" class="hidden lg:inline-block">
@@ -75,8 +87,10 @@
 						       class="py-2 pl-4 focus-within:outline-none lg:bg-transparent lg:py-0">
 					</div>
 
-					<button type="submit"
-					        class="mt-4 rounded-full bg-blue-500 px-8 py-3 text-xs font-semibold uppercase text-white transition-colors duration-300 hover:bg-blue-600 lg:ml-3 lg:mt-0">
+					<button
+						type="submit"
+						class="mt-4 rounded-full bg-blue-500 px-8 py-3 text-xs font-semibold uppercase text-white transition-colors duration-300
+				        hover:bg-blue-600 lg:ml-3 lg:mt-0">
 						Subscribe
 					</button>
 				</form>

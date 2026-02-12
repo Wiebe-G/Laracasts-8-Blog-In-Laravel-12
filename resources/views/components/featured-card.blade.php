@@ -1,9 +1,12 @@
 @props(['post'])
 <article
-	class="rounded-xl border border-black border-opacity-0 transition-colors duration-300 hover:border-opacity-5 hover:bg-gray-100">
+	class="rounded-xl border border-black border-opacity-0 transition-colors duration-300 hover:border-opacity-5 hover:bg-gray-100
+	w-full ">
 	<div class="px-5 py-6 lg:flex">
-		<div class="flex-1 lg:mr-8">
-			<img src="/images/illustration-1.png" alt="Blog Post illustration" class="rounded-xl">
+		<div class="flex-1 lg:mr-8 ">
+			<img src="{{ asset('storage/' . $post->thumbnail) }}"
+			     alt="Blog Post thumbnail"
+			     class="rounded-xl h-96 w-full">
 		</div>
 
 		<div class="flex flex-1 flex-col justify-between">

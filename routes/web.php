@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\RegisterController;
@@ -30,3 +31,13 @@ Route::view('/login', 'auth.login')
 Route::post('login', LoginController::class)
     ->middleware('guest')
     ->name('login');
+
+// admin routes
+Route::middleware('admin')->group(function () {
+	Route::get('admin/posts/create', [AdminController::class, 'create']);
+	Route::post('admin/posts/', [AdminController::class, 'store']);
+	Route::get('admin/posts', [\App\Http\Controllers\AdminController::class, 'show']);
+	Route::get('admin/posts/{post:id}/edit', [AdminController::class, 'edit']);
+	Route::patch('admin/posts/{post:id}', [AdminController::class, 'update']);
+	Route::delete('admin/posts/{post:id}', [AdminController::class, 'destroy']);
+});

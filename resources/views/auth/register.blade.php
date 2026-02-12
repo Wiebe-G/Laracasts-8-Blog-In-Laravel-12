@@ -7,92 +7,16 @@
 			<h1 class="text-center font-bold text-xl">Registreer een account</h1>
 			<form action="/register" method="POST" class="mt-10">
 				@csrf
-				<div class="mb-6">
-					<label
-						class="block mb-2 uppercase font-bold text-xs text-gray-700"
-						for="name">
-						Naam
-					</label>
+				<x-form.input name="name" />
 
-					<input
-						class="border border-gray-400 p-2 w-full"
-						type="text"
-						name="name"
-						id="name"
-						value="{{old('name')}}"
-						required>
+				<x-form.input name="username" />
 
-					@error('name')
-					<p class="text-red-500 text-xs mt-2">{{$message}}</p>
-					@enderror
-				</div>
+				<x-form.input name="email" type="email" autocomplete="username"/>
 
-				<div class="mb-6">
-					<label
-						class="block mb-2 uppercase font-bold text-xs text-gray-700"
-						for="username">
-						Gebruikersnaam
-					</label>
+				<x-form.input name="password" type="password" autocomplete="new-password"/>
 
-					<input
-						class="border border-gray-400 p-2 w-full"
-						type="text"
-						name="username"
-						id="username"
-						value="{{old('username')}}"
-						required>
-
-					@error('username')
-					<p class="text-red-500 text-xs mt-2">{{$message}}</p>
-					@enderror
-				</div>
-
-				<div class="mb-6">
-					<label
-						class="block mb-2 uppercase font-bold text-xs text-gray-700"
-						for="email">
-						Email
-					</label>
-
-					<input
-						class="border border-gray-400 p-2 w-full"
-						type="email"
-						name="email"
-						id="email"
-						value="{{old('email')}}"
-						required>
-
-					@error('email')
-					<p class="text-red-500 text-xs mt-2">{{$message}}</p>
-					@enderror
-				</div>
-
-				<div class="mb-6">
-					<label
-						class="block mb-2 uppercase font-bold text-xs text-gray-700"
-						for="password">
-						Wachtwoord
-					</label>
-
-					<input
-						class="border border-gray-400 p-2 w-full"
-						type="password"
-						name="password"
-						id="password"
-						required>
-
-					@error('password')
-					<p class="text-red-500 text-xs mt-2">{{$message}}</p>
-					@enderror
-				</div>
-
-
-				<div class="mb-6">
-					<button
-						type="submit"
-						class="bg-blue-400 text-white rounded-xl py-2 px-4 hover:bg-blue-500 w-full">
-						Registreer
-					</button>
+				<div class="mb-6 flex justify-end">
+					<x-submit-button>Registreer</x-submit-button>
 				</div>
 
 				@if($errors->any())

@@ -11,19 +11,22 @@
 				<h2 class="ml-3">Doe mee met de discussie</h2>
 			</header>
 
-			<div class="mt-6">
-				<textarea
-					name="body"
-					rows="5"
-					class="resize-none w-full text-sm
-					focus:outline-none focus:ring"
-					placeholder="Wat vindt je?"
-					required>
-				</textarea>
+			<x-form.field>
+				<x-form.field>
+					<textarea
+						class="border border-gray-200 rounded p-2 w-full
+						resize-none"
+						type="text"
+						name="body"
+						id="commentBody"
+						placeholder="Wat vindt je?"
+						required>
 
-				@error('body')
-				<span class="text-red-500 text-sm">{{ $message }}</span>
-				@enderror
+						</textarea>
+					<x-form.error name="body"/>
+				</x-form.field>
+			</x-form.field>
+
 			</div>
 
 			<div class="flex justify-end">
@@ -34,7 +37,7 @@
 @else
 	<div>
 		<h1 class="font-bold">Niet ingelogd</h1>
-			<span>
+		<span>
 				<a href="/login"
 				   class="link link-primary text-blue-300">
 					Log in
