@@ -49,8 +49,10 @@ Route::middleware('auth')->group(function () {
 	// bookmarks
 	Route::post('/bookmark/{post:id}', [BookmarkController::class, 'update'])->name('bookmark.update');
 	Route::get('/user/settings/bookmarks', [BookmarkController::class, 'show'])->name('user.bookmarks');
-
 	Route::delete('user/settings/bookmarks/{post:id}', [BookmarkController::class, 'destroy'])->name('user.bookmarks.destroy');
+
+	// likes
+	Route::post('/like/{post:id}', [LikesController::class, 'update'])->name('like.update');
 
 	// user settings
 	Route::get('/user/settings', Usercontroller::class)->name('user.settings');

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class BookmarkController extends Controller
 {
@@ -58,7 +59,11 @@ class BookmarkController extends Controller
     public function update(Post $post)
     {
 		$user = auth()->user();
+		if($user == null){
+			abort(Response::HTTP_UNAUTHORIZED);
+		}
 		$user->bookmarkedPosts()->attach($post->id);
+
         return back()->with('success', 'Bookmark toegevoegd');
     }
 

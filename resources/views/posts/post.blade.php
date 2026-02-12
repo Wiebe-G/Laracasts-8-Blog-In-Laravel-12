@@ -23,10 +23,11 @@
 				</div>
 				<div class="flex flex-col space-y-2">
 					@auth
-						<form method="POST" action="/like/{{ $post->slug }}/like">
+						<form method="POST" action="/like/{{ $post->id }}">
 							@csrf
 							<x-submit-button>Like post (wip)</x-submit-button>
 						</form>
+
 
 						@if($post->users()->where('user_id', auth()->id())->exists())
 							<form method="POST" action="/user/settings/bookmarks/{{ $post->id }}">
@@ -34,7 +35,11 @@
 								@method('DELETE')
 								{{--Todo: confirm voor verwijderen--}}
 
-								<x-submit-button>Verwijder post</x-submit-button>
+								<x-submit-button>
+									Verwijder post
+									<br>
+									uit bookmarks
+								</x-submit-button>
 							</form>
 						@else
 							<form method="POST" action="/bookmark/{{ $post->id }}">
@@ -66,7 +71,7 @@
 							</g>
 						</svg>
 
-						Back to Posts
+						Terug naar posts
 					</a>
 
 					<div class="space-x-2">
