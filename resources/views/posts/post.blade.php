@@ -18,8 +18,24 @@
 						<h5 class="font-bold">
 							<a href="/?author={{ $post->author->username }}">{{ $post->author->name }}</a>
 						</h5>
+
 					</div>
 				</div>
+				<div class="flex flex-col space-y-2">
+					@auth
+						<form method="POST" action="/posts/{{ $post->slug }}/like">
+							<x-submit-button>Like post</x-submit-button>
+						</form>
+						<form method="POST" action="/posts/{{ $post->slug }}/bookmark">
+							<x-submit-button>Bookmark post</x-submit-button>
+						</form>
+					@else
+						<span>
+							<a href="/login" class="link link-primary">Log in</a> om posts te liken of te bookmarken
+						</span>
+					@endauth
+				</div>
+
 			</div>
 
 			<div class="col-span-8">

@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\LikesController;
 use App\Http\Controllers\PageController;
 use Illuminate\Support\Facades\Route;
 
@@ -40,4 +41,9 @@ Route::middleware('admin')->group(function () {
 	Route::get('admin/posts/{post:id}/edit', [AdminController::class, 'edit']);
 	Route::patch('admin/posts/{post:id}', [AdminController::class, 'update']);
 	Route::delete('admin/posts/{post:id}', [AdminController::class, 'destroy']);
+});
+
+Route::middleware('auth')->group(function () {
+	// like
+	Route::post('/posts/{post:slug}/like', LikesController::class);
 });
