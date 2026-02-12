@@ -32,6 +32,12 @@
 				<x-form.error name="category"/>
 			</x-form.field>
 
+			<x-form.field>
+				<x-form.label name="published"/>
+
+				<x-form.state-select/>
+			</x-form.field>
+
 			<div class="flex justify-end">
 				<x-submit-button>
 					Post

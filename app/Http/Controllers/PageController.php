@@ -14,11 +14,9 @@ class PageController extends Controller
 {
     public function HomePage()
     {
+		$posts = Post::latest()->filter(request(['search', 'category', 'author']))->where('published', true)->paginate(10)->withQueryString();
         return view('posts.home', [
-            'posts' => Post::latest()->filter(
-                request(['search', 'category', 'author'])
-            )
-                ->paginate(10)->withQueryString(),
+            'posts' => $posts
         ]);
     }
 

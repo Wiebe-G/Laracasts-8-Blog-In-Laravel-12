@@ -35,7 +35,7 @@
 						<x-dropdown-item href="/admin/posts/create" :active="request()->is('admin/posts/create')">
 							Nieuwe post
 						</x-dropdown-item>
-						<x-dropdown-item href="/admin/posts/" :active="request()->is('admin/posts/view')">
+						<x-dropdown-item href="/admin/posts/" :active="request()->is('admin/posts')">
 							Alle posts
 						</x-dropdown-item>
 					@endcan
