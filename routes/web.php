@@ -8,15 +8,16 @@ use App\Http\Controllers\BookmarkController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\LikesController;
 use App\Http\Controllers\PageController;
-use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserSettingsController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [PageController::class, 'HomePage'])->name('home');
 
-Route::get('/posts/{post:slug}', [PageController::class, 'PostsPage'])->name('posts');
+Route::get('/posts/{post:slug}', [PageController::class, 'PostsPage'])
+	->name('posts.show');
 
-Route::post('/posts/{post:slug}/comments', [CommentController::class, 'store'])->name('comments.store');
+Route::post('/posts/{post:slug}/comments', [CommentController::class, 'store'])
+	->name('comments.store');
 
 // auth routes
 Route::get('register', [RegisterController::class, 'create']);
@@ -38,8 +39,8 @@ Route::post('login', LoginController::class)
 
 // admin routes
 Route::middleware('admin')->group(function () {
-	Route::get('admin/posts/create', [AdminController::class, 'create']);
-	Route::post('admin/posts/', [AdminController::class, 'store']);
+	Route::get('admin/posts/create', [AdminController::class, 'create'])->name('admin.posts.create');
+	Route::post('admin/posts/', [AdminController::class, 'store'])->name('admin.posts.store');
 	Route::get('admin/posts', [\App\Http\Controllers\AdminController::class, 'show']);
 	Route::get('admin/posts/{post:id}/edit', [AdminController::class, 'edit']);
 	Route::patch('admin/posts/{post:id}', [AdminController::class, 'update']);
@@ -59,4 +60,5 @@ Route::middleware('auth')->group(function () {
 
 	// user settings
 	Route::get('/settings/details', [UsersettingsController::class, 'show'])->name('user.settings');
+	Route::post('/settings/details/update', [UsersettingsController::class, 'update'])->name('user.settings.update');
 });

@@ -32,22 +32,22 @@
 					</x-slot>
 
 					@can('admin')
-						<x-dropdown-item href="/admin/posts/create" :active="request()->is('admin/posts/create')">
+						<x-dropdown-item href="{{ route('admin.posts.create') }}" :active="request()->is('admin/posts/create')">
 							Nieuwe post
 						</x-dropdown-item>
-						<x-dropdown-item href="/admin/posts/" :active="request()->is('admin/posts')">
+						<x-dropdown-item href="{{ route('admin.posts.store') }}" :active="request()->is('admin/posts')">
 							Alle posts
 						</x-dropdown-item>
 					@endcan
 					<x-dropdown-item
-						href="/settings/bookmarks">
+						href="{{ route('user.bookmarks') }}">
 						Instellingen
 					</x-dropdown-item>
 					<x-dropdown-item href="#" x-date="{}"
 					                 @click.prevent="document.querySelector('#logout-form').submit()">Log uit
 					</x-dropdown-item>
 
-					<form id="logout-form" method="POST" action="/logout" class="hidden">
+					<form id="logout-form" method="POST" action="{{ route('logout') }}" class="hidden">
 						@csrf
 						<button type="submit" class="btn btn-ghost btn-sm">Log uit</button>
 					</form>

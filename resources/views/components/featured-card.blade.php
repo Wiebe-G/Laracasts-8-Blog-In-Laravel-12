@@ -17,13 +17,14 @@
 
 				<div class="mt-4">
 					<h1 class="text-3xl">
-						<a href="/posts/{{ $post->slug }}" class="link link-primary">
+						<a href="{{ route('posts.show', $post) }}" class="link link-primary">
 							{{ $post->title }}
 						</a>
 					</h1>
 
 					<span class="mt-2 block text-xs text-gray-400">
 						Gepubliceerd op <time>{{ $post->created_at->diffForHumans() }}</time>
+						<br>
 						@if ($post->updated_at->gt($post->created_at->addSeconds(5)))
 							<span>Laatst bewerkt om: {{ $post->updated_at }}</span>
 						@endif
@@ -39,8 +40,11 @@
 				<div class="flex items-center text-sm">
 					<img src="/images/lary-avatar.svg" alt="Lary avatar">
 					<div class="ml-3">
-						<h5 class="font-bold"><a
-								href="/?author={{ $post->author->username }}">{{ $post->author->name }}</a></h5>
+						<h5 class="font-bold">
+							<a href="/?author={{ $post->author->username }}">
+								{{ $post->author->name }}
+							</a>
+						</h5>
 					</div>
 				</div>
 
