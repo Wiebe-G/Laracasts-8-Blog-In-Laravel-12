@@ -27,6 +27,22 @@
 		<p>
 			{{$comment->body}}
 		</p>
+
+		@can('update', $comment)
+			<div class="flex gap-1">
+				<a href="#" class="btn btn-ghost btn-xs">
+					Bewerk
+				</a>
+				<form method="POST" action="/comments/{{ $comment->id }}">
+					@csrf
+					@method('DELETE')
+					<button type="submit" onclick="return confirm('Weet u zeker dat u deze comment wil verwijderen?')"
+					        class="btn btn-ghost btn-xs text-error">
+						Delete
+					</button>
+				</form>
+			</div>
+		@endcan
 	</div>
 </article>
 </x-panel>
