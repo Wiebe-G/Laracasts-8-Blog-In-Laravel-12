@@ -23,25 +23,41 @@
 				</div>
 				<div class="flex flex-col space-y-2">
 					@auth
-						<form method="POST" action="/like/{{ $post->slug }}/like">
+						<form method="POST" action="{{ $post->isLikedBy(auth()->user())
+ 							? route('like.destroy', $post)
+ 							: route('like.update', $post)}}">
 							@csrf
-							<x-submit-button>Like post (wip)</x-submit-button>
+
+							@if($post->isLikedBy(auth()->user()))
+								@method('DELETE')
+							@endif
+
+							<x-submit-button
+							:onList="$post->isLikedBy(auth()->user())">
+								{{ $post->isLikedBy(auth()->user())
+ 								? 'Verwijder like'
+ 								: 'Like post'}}
+							</x-submit-button>
 						</form>
 
-						@if($post->users()->where('user_id', auth()->id())->exists())
-							<form method="POST" action="/user/settings/bookmarks/{{ $post->id }}">
-								@csrf
-								@method('DELETE')
-								{{--Todo: confirm voor verwijderen--}}
 
-								<x-submit-button>Verwijder post</x-submit-button>
-							</form>
-						@else
-							<form method="POST" action="/bookmark/{{ $post->id }}">
-								@csrf
-								<x-submit-button>Bookmark post</x-submit-button>
-							</form>
-						@endif
+						<form method="POST"
+						      action="{{ $post->isBookmarkedBy(auth()->user())
+ 								? route('user.bookmarks.destroy', $post)
+ 								: route('bookmark.update', $post)}}">
+							@csrf
+
+							@if($post->isBookmarkedBy(auth()->user()))
+								@method('DELETE')
+							@endif
+
+							<x-submit-button
+								:onList="$post->isBookmarkedBy(auth()->user())">
+								{{ $post->isBookmarkedBy(auth()->user())
+									? 'Verwijder uit bookmarks'
+									: 'Bookmark post' }}
+							</x-submit-button>
+						</form>
 
 					@else
 						<span>
@@ -66,7 +82,7 @@
 							</g>
 						</svg>
 
-						Back to Posts
+						Terug naar posts
 					</a>
 
 					<div class="space-x-2">

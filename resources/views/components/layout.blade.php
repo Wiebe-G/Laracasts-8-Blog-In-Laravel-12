@@ -40,7 +40,7 @@
 						</x-dropdown-item>
 					@endcan
 					<x-dropdown-item
-						href="/user/settings/bookmarks">
+						href="/settings/bookmarks">
 						Instellingen
 					</x-dropdown-item>
 					<x-dropdown-item href="#" x-date="{}"

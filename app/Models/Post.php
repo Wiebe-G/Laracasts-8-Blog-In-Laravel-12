@@ -61,11 +61,26 @@ class Post extends Model
 
 	public function likes()
 	{
-		return $this->belongsToMany(User::class, 'likes');
+		return $this->belongsToMany(User::class, 'post_user_liked');
 	}
 
 	public function users()
 	{
 		return $this->belongsToMany(User::class);
+	}
+
+	public function isBookmarkedBy($user): bool
+	{
+		return $this->users->contains($user);
+	}
+
+	public function LikedBy()
+	{
+		return $this->belongsToMany(User::class, 'post_user_liked', 'post_id', 'user_id');
+	}
+
+	public function isLikedBy($user): bool
+	{
+		return $this->LikedBy()->where('user_id', $user->id)->exists();
 	}
 }
