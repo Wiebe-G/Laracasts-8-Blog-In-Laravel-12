@@ -2,11 +2,9 @@ Edit post om auteur te wijzigen
 
 RSS feed
 
-Post liken
-
 Sorteren op nieuwste, oudste, populairste (op basis van likes)
 
-Volgen van auteurs
+Volgen van auteurs en bericht sturen als ze posten, notificatie menu in header(?)
 
 Account info updaten
 

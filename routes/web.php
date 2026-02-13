@@ -9,6 +9,7 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\LikesController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\UserSettingsController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [PageController::class, 'HomePage'])->name('home');
@@ -57,5 +58,5 @@ Route::middleware('auth')->group(function () {
 	Route::delete('/settings/likes/{post:id}', [LikesController::class, 'destroy'])->name('like.destroy');
 
 	// user settings
-	Route::get('/user/settings', Usercontroller::class)->name('user.settings');
+	Route::get('/settings/details', [UsersettingsController::class, 'show'])->name('user.settings');
 });
