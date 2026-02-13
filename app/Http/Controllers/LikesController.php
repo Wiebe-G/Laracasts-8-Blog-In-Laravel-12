@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -36,9 +37,16 @@ class LikesController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show()
     {
-        //
+        $user = auth()->user();
+		if($user == null){
+			abort(Response::HTTP_UNAUTHORIZED);
+		}
+		$posts = $user->likes()->paginate(10);
+		return view('user-settings.likes.show', [
+			'posts' => $posts
+		]);
     }
 
     /**
@@ -66,8 +74,18 @@ class LikesController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Post $post)
     {
-        //
+        $user = auth()->user();
+		if($user == null){
+			abort(Response::HTTP_UNAUTHORIZED);
+		}
+
+		$user->likes()->detach($post->id);
+
+		$maxId = DB::table('post_user_liked')->max('id') + 1;
+		DB::statement("ALTER TABLE post_user_liked AUTO_INCREMENT = $maxId;");
+
+		return back()->with('success', 'Like verwijderd');
     }
 }

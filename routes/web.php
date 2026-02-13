@@ -48,11 +48,13 @@ Route::middleware('admin')->group(function () {
 Route::middleware('auth')->group(function () {
 	// bookmarks
 	Route::post('/bookmark/{post:id}', [BookmarkController::class, 'update'])->name('bookmark.update');
-	Route::get('/user/settings/bookmarks', [BookmarkController::class, 'show'])->name('user.bookmarks');
-	Route::delete('user/settings/bookmarks/{post:id}', [BookmarkController::class, 'destroy'])->name('user.bookmarks.destroy');
+	Route::get('/settings/bookmarks', [BookmarkController::class, 'show'])->name('user.bookmarks');
+	Route::delete('/settings/bookmarks/{post:id}', [BookmarkController::class, 'destroy'])->name('user.bookmarks.destroy');
 
 	// likes
 	Route::post('/like/{post:id}', [LikesController::class, 'update'])->name('like.update');
+	Route::get('/settings/likes', [LikesController::class, 'show'])->name('user.likes');
+	Route::delete('/settings/likes/{post:id}', [LikesController::class, 'destroy'])->name('like.destroy');
 
 	// user settings
 	Route::get('/user/settings', Usercontroller::class)->name('user.settings');

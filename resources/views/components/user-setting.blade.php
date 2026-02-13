@@ -9,17 +9,17 @@
 			<h4 class="font-semibold mb-4">Links</h4>
 			<ul class="w-full">
 				<li>
-					<a href="/user/settings/display"
-					   class="{{ request()->is('user/settings/display') ? 'text-blue-500' : '' }}">
+					<a href="/settings/display"
+					   class="{{ request()->is('settings/display') ? 'text-blue-500' : '' }}">
 						Display instellingen
 					</a>
 					<br>
-					<a href="/user/settings/bookmarks"
-					   class="{{ request()->is('user/settings/bookmarks') ? 'text-blue-500' : '' }}">
+					<a href="/settings/bookmarks"
+					   class="{{ request()->is('settings/bookmarks') ? 'text-blue-500' : '' }}">
 						Posts in uw bookmarks
 					</a>
-					<a href="/user/settings/likes"
-					   class="{{ request()->is('user/settings/likes') ? 'text-blue-500' : '' }}">
+					<a href="/settings/likes"
+					   class="{{ request()->is('settings/likes') ? 'text-blue-500' : '' }}">
 						Posts die u geliket heeft
 					</a>
 				</li>
