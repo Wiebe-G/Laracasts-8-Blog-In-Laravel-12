@@ -10,6 +10,9 @@ document.addEventListener('DOMContentLoaded', () => {
 const slugInput: HTMLInputElement = <HTMLInputElement>document.getElementById('slug');
 const titleInput: HTMLInputElement = <HTMLInputElement>document.getElementById('title');
 
-titleInput.addEventListener('input', () => {
-	slugInput.value = titleInput.value.trim().toLowerCase().replace(/\s+/g, "-");
-})
+if(titleInput){
+	titleInput.addEventListener('input', () => {
+		slugInput.value = titleInput.value.trim().toLowerCase().replace(/\s+/g, "-");
+	})
+}
+

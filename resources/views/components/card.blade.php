@@ -23,6 +23,7 @@
 
 					<span class="mt-2 block text-xs text-gray-400">
 						Gepubliceerd op <time>{{ $post->created_at->diffForHumans() }}</time>
+						<br>
 						@if ($post->updated_at->gt($post->created_at->addSeconds(5)))
 							<span>Laatst bewerkt om: {{ $post->updated_at }}</span>
 						@endif

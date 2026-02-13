@@ -7,6 +7,6 @@
 	@endphp
 	<h1>Hallo {{ $user->name }}</h1>
 	<x-user-setting heading="Hallo">
-		<h1>hi</h1>
+		<h1></h1>
 	</x-user-setting>
 </x-layout>
