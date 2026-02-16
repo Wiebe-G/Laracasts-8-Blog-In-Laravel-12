@@ -66,9 +66,9 @@
 		{{ $slot }}
 	</main>
 
-	<footer class="footer footer-center p-5 bg-base-300 text-base-content text-xs">
+	<footer class="footer footer-center p-5 bg-base-300 text-base-content text-xs h-full">
 		<div>
-			<p>© {{ now()->year }} Chirper - Built with Laravel and ❤️</p>
+			<p>© {{ now()->year }} blog - Built with Laravel and ❤️</p>
 		</div>
 	</footer>
 </section>

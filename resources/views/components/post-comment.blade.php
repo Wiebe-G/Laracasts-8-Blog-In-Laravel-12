@@ -22,6 +22,18 @@
 					{{ $comment->created_at->format('H:i') }}
 				</time>
 			</p>
+
+			@if($comment->updated_at->gt($comment->created_at->addSeconds(5)))
+				<div class="text-xs">Bewerkt op
+					<time>
+						{{ $comment->updated_at->format('d/m/Y') }}
+					</time>
+					om
+					<time>
+						{{ $comment->updated_at->format('H:i') }}
+					</time>
+				</div>
+			@endif
 		</header>
 
 		<p>
@@ -30,10 +42,10 @@
 
 		@can('update', $comment)
 			<div class="flex gap-1">
-				<a href="#" class="btn btn-ghost btn-xs">
+				<a href="{{ route('comments.edit', $comment->id) }}" class="btn btn-ghost btn-xs">
 					Bewerk
 				</a>
-				<form method="POST" action="/comments/{{ $comment->id }}">
+				<form method="POST" action="{{ route('comments.destroy', $comment->id) }}">
 					@csrf
 					@method('DELETE')
 					<button type="submit" onclick="return confirm('Weet u zeker dat u deze comment wil verwijderen?')"

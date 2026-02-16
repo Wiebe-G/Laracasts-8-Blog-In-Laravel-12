@@ -8,6 +8,7 @@ use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 use Symfony\Component\HttpFoundation\Response as ResponseAlias;
 
@@ -58,17 +59,28 @@ class CommentController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Comment $comment)
     {
-        //
+        $this->authorize('update', $comment);
+
+		return view('comments.edit', compact('comment'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Comment $comment)
     {
-        //
+        $this->authorize('update', $comment);
+
+		$validated = $request->validate([
+			'body' => ['required', 'string', 'max:255']
+		]);
+
+		$comment->update($validated);
+
+		return redirect('/')->with('success', 'Comment bewerkt');
+
     }
 
     /**
@@ -83,6 +95,9 @@ class CommentController extends Controller
 		}
 
 		$comment->delete();
+
+		$maxId = DB::table('comments')->max('id') + 1;
+		DB::statement("ALTER TABLE comments AUTO_INCREMENT = $maxId;");
 
 		return back()->with('success', 'Comment verwijderd');
     }

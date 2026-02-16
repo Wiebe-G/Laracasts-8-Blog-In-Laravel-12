@@ -63,5 +63,7 @@ Route::middleware('auth')->group(function () {
 	Route::post('/settings/details/update', [UsersettingsController::class, 'update'])->name('user.settings.update');
 
 	// Comments aanpassen
+	Route::get('/comments/{comment:id}/edit', [CommentController::class, 'edit'])->name('comments.edit');
+	Route::put('/comments/{comment:id}', [CommentController::class, 'update'])->name('comments.update');
 	Route::delete('/comments/{comment:id}', [CommentController::class, 'destroy'])->name('comments.destroy');
 });
