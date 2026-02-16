@@ -1,5 +1,3 @@
-Edit post om auteur te wijzigen
-
 RSS feed
 
 Sorteren op nieuwste, oudste, populairste (op basis van likes)

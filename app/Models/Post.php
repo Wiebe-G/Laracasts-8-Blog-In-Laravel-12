@@ -71,7 +71,13 @@ class Post extends Model
 
 	public function isBookmarkedBy($user): bool
 	{
-		return $this->users->contains($user);
+		return $this->bookmarkedBy()->where('user_id', $user->id)->exists();
+
+	}
+
+	public function bookmarkedBy()
+	{
+		return $this->belongsToMany(User::class, 'post_user');
 	}
 
 	public function LikedBy()
