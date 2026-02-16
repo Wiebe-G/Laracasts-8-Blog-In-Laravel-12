@@ -59,6 +59,16 @@
 							</x-submit-button>
 						</form>
 
+						@can('admin')
+							<span>
+								<a href="/admin/posts/{{ $post->id }}/edit"
+								class="link link-primary"
+								target="_blank">
+									Bewerk post
+								</a>
+							</span>
+						@endcan
+
 					@else
 						<span>
 							<a href="/login" class="link link-primary">Log in</a> om posts te liken of te bookmarken

@@ -4,6 +4,7 @@
 	</x-slot:title>
 
 	<x-setting :heading="'Bewerk  post: ' . $post->title">
+{{--		@dd($post->author->id)--}}
 		<form method="POST" action="/admin/posts/{{$post->id}}" enctype="multipart/form-data">
 			@csrf
 			@method('PATCH')
@@ -38,8 +39,20 @@
 			</x-form.field>
 
 			<x-form.field>
-				<x-form.label name="published"/>
+				<x-form.label name="author"/>
+				<select name="user_id" id="user_id">
 
+					@foreach(\App\Models\User::all() as $author)
+						<option value="{{ $author->id }}"
+						{{ old('user_id', $post->user_id) == $author->id ? 'selected' : '' }}>
+							{{ ucwords($author->name) }}
+						</option>
+					@endforeach
+				</select>
+			</x-form.field>
+
+			<x-form.field>
+				<x-form.label name="published"/>
 				<x-form.state-select
 					:post="$post"
 					:active="$post->published"/>
