@@ -14,20 +14,24 @@
 				<div class="mb-6 flex justify-end">
 					<x-submit-button>Log in</x-submit-button>
 				</div>
-
-				@if($errors->any())
-					<ul>
-						@foreach($errors->all() as $error)
-							<li class="text-red-500 text-xs">{{$error}}</li>
-						@endforeach
-					</ul>
-				@endif
 			</form>
 			<div class="divider">OF</div>
 			<p class="text-center text-sm">
 				Nog geen account?
-				<a href="/register" class="link link-primary">Maak een account aan</a>
+				<br>
+				<a href="/register" class="link link-primary">
+					Maak een account aan
+				</a>
 			</p>
+
+			@if($errors->any())
+				<ul>
+					@foreach($errors->all() as $error)
+						<li class="text-red-500 text-xs">{{$error}}</li>
+					@endforeach
+				</ul>
+				@endif
+
 		</main>
 	</section>
 </x-layout>

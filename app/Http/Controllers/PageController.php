@@ -15,30 +15,15 @@ class PageController extends Controller
 {
 	public function HomePage(Request $request)
 	{
-		$sort = $request->input('sort', 'asc');
-
-//		switch ($sort) {
-//			case 'asc':
-//				$posts = Post::latest()->filter(request(['search', 'category', 'author']))->where('published', true)->paginate(10)->withQueryString();
-//				break;
-//			case 'desc':
-//				$posts = Post::oldest()->filter(request(['search', 'category', 'author']))->where('published', true)->paginate(10)->withQueryString();
-//				break;
-//			default:
-//				break;
-//		};
-
-		$direction = $sort === 'desc' ? 'asc' : 'desc';
-
 		$posts = Post::query()
-			->orderBy('created_at', $direction)
-			->filter(request(['search', 'category', 'author']))
 			->where('published', true)
+			->filter($request->only(['search', 'category', 'author']))
+			->sort($request->input('sort', 'desc'))
 			->paginate(10)
 			->withQueryString();
 
 		return view('posts.home', [
-			'posts' => $posts
+			'posts' => $posts,
 		]);
 	}
 

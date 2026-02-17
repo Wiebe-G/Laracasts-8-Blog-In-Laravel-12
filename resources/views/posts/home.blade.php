@@ -12,4 +12,10 @@
 			<div>Geen posts gevonden</div>
 	</div>
 	@endif
+{{--	<span>--}}
+{{--		@foreach($sortedPosts as $sortedPost)--}}
+{{--			<span>{{ $loop->iteration }} - {{ $sortedPost->title  }} heeft {{ $sortedPost->likes_count }}</span>--}}
+{{--			<br>--}}
+{{--		@endforeach--}}
+{{--	</span>--}}
 </x-layout>

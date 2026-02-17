@@ -43,7 +43,7 @@ class BookmarkController extends Controller
 		if($user == null){
 			abort(Response::HTTP_UNAUTHORIZED);
 		}
-		$posts = Post::with('users')->paginate(10);
+		$posts = $user->bookmarkedPosts()->paginate(10);
         return view('user-settings.bookmarks.show', [
 			'posts' => $posts
 		]);

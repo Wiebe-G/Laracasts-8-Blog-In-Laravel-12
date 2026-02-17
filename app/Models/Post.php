@@ -39,6 +39,15 @@ class Post extends Model
             );
     }
 
+	public function scopeSort($query, $sort)
+	{
+		if($sort == 'popular'){
+			return $query->withCount('likes')
+				->orderBy('likes_count', 'desc');
+		}
+		return $query->orderBy('created_at', $sort === 'asc' ? 'asc' : 'desc');
+	}
+
     public function getRouteKeyName()
     {
         return 'slug';
