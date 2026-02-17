@@ -4,7 +4,7 @@
 	</x-slot:title>
 
 	<x-setting heading="Maak een nieuwe post aan">
-		<form method="POST" action="/admin/posts" enctype="multipart/form-data">
+		<form method="POST" action="{{ route('admin.posts.store') }}" enctype="multipart/form-data">
 			@csrf
 			<x-form.input name="title" required/>
 

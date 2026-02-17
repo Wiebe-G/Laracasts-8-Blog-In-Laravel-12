@@ -20,6 +20,8 @@ class SortDropdown extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.sort-dropdown');
+        return view('components.sort-dropdown', [
+			
+		]);
     }
 }
