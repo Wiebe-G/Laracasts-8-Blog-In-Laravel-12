@@ -39,6 +39,15 @@ class Post extends Model
             );
     }
 
+	public function scopeSort($query, $sort)
+	{
+		if($sort == 'popular'){
+			return $query->withCount('likes')
+				->orderBy('likes_count', 'desc');
+		}
+		return $query->orderBy('created_at', $sort === 'asc' ? 'asc' : 'desc');
+	}
+
     public function getRouteKeyName()
     {
         return 'slug';
@@ -71,7 +80,13 @@ class Post extends Model
 
 	public function isBookmarkedBy($user): bool
 	{
-		return $this->users->contains($user);
+		return $this->bookmarkedBy()->where('user_id', $user->id)->exists();
+
+	}
+
+	public function bookmarkedBy()
+	{
+		return $this->belongsToMany(User::class, 'post_user');
 	}
 
 	public function LikedBy()

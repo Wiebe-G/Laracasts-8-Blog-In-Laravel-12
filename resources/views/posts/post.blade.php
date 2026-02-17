@@ -38,16 +38,17 @@
  								? 'Verwijder like'
  								: 'Like post'}}
 							</x-submit-button>
+							<span>Geliket door {{ count($post->likedBy) }} gebruiker(s)</span>
 						</form>
 
 
 						<form method="POST"
-						      action="{{ $post->isBookmarkedBy(auth()->user())
+						      action="{{ $post->bookmarkedBy(auth()->user())
  								? route('user.bookmarks.destroy', $post)
  								: route('bookmark.update', $post)}}">
 							@csrf
 
-							@if($post->isBookmarkedBy(auth()->user()))
+							@if($post->bookmarkedBy(auth()->user()))
 								@method('DELETE')
 							@endif
 
@@ -57,6 +58,7 @@
 									? 'Verwijder uit bookmarks'
 									: 'Bookmark post' }}
 							</x-submit-button>
+							<span>Gebookmarkt door {{ count($post->bookmarkedBy ) }} gebruiker(s)</span>
 						</form>
 
 						@can('admin')

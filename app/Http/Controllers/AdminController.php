@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
 
 class AdminController extends Controller
@@ -91,7 +92,6 @@ class AdminController extends Controller
 			'title' => 'required',
 			'thumbnail' => $post->exists ? ['image'] : ['required', 'image'],
 			'slug' => ['required', Rule::unique('posts', 'slug')->ignore($post)],
-			'user_id' => 'required: exists:users,id',
 			'excerpt' => 'required',
 			'body' => 'required',
 			'category_id' => ['required', Rule::exists('categories', 'id')],

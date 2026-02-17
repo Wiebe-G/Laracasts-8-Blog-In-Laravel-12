@@ -13,8 +13,8 @@
 	@vite(['resources/css/app.css', 'resources/js/app.ts'])
 </head>
 
-<body style="font-family: Open Sans, sans-serif">
-<section class="px-6 py-8">
+<body style="font-family: Open Sans, sans-serif" class="min-h-screen flex flex-col">
+<section class="px-6 py-8 flex flex-col flex-1">
 	<nav class="md:flex md:items-center md:justify-between navbar">
 		<div class="navbar-start">
 			<a href="/">
@@ -62,11 +62,12 @@
 	{{-- Chirper flash message --}}
 	<x-flash/>
 
-	<main class="mx-auto mt-6 max-w-6xl space-y-6 lg:mt-20">
+	<main class="mx-auto mt-6 max-w-6xl space-y-6 lg:mt-20 flex-1">
 		{{ $slot }}
 	</main>
 
-	<footer class="footer footer-center p-5 bg-base-300 text-base-content text-xs h-full">
+	<footer class="mt-16 rounded-xl border border-black border-opacity-5 bg-gray-100 px-10 py-16 text-center"
+	        id="Footer">
 		<div>
 			<p>© {{ now()->year }} blog - Built with Laravel and ❤️</p>
 		</div>

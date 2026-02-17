@@ -2,7 +2,7 @@
 	<x-slot:title>
 		Registreer
 	</x-slot:title>
-	<section class="px-6 py-8">
+	<section class="px-6 py-8 w-full">
 		<main class="max-w-lg mx-auto mt-10 bg-gray-100 border border-gray-200 p-6 rounded-xl">
 			<h1 class="text-center font-bold text-xl">Registreer een account</h1>
 			<form action="/register" method="POST" class="mt-10">
@@ -30,6 +30,7 @@
 			<div class="divider">OF</div>
 			<p class="text-center text-sm">
 				Heeft u al een account?
+				<br>
 				<a href="/login" class="link link-primary">Log in</a>
 			</p>
 		</main>
