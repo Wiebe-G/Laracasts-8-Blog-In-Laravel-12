@@ -42,7 +42,7 @@
 
 	<x-dropdown-item
 		href="{{ request()->fullUrlWithQuery(['sort' => 'popular']) }}"
-		:active="request()->routeIs('most-popular') && is_null(request()->getQueryString())"
+		:active="$currentSort === 'popular'"
 	>
 		Populairste posts eerst
 	</x-dropdown-item>

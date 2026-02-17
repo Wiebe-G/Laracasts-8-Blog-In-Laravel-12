@@ -1,7 +1,3 @@
-RSS feed
-
-Sorteren op nieuwste, oudste, populairste (op basis van likes)
-
 Volgen van auteurs en bericht sturen als ze posten, notificatie menu in header(?)
 
 User profiel met bio etc
