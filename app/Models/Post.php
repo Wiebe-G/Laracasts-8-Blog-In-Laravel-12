@@ -45,7 +45,7 @@ class Post extends Model
 			return $query->withCount('likes')
 				->orderBy('likes_count', 'desc');
 		}
-		return $query->orderBy('created_at', $sort === 'asc' ? 'asc' : 'desc');
+		return $query->orderBy('created_at', $sort === 'asc' ? 'desc' : 'asc');
 	}
 
     public function getRouteKeyName()
