@@ -18,7 +18,7 @@ class PageController extends Controller
 		$posts = Post::query()
 			->where('published', true)
 			->filter($request->only(['search', 'category', 'author']))
-			->sort($request->input('sort', 'desc'))
+			->sort($request->input('sort', 'asc'))
 			->paginate(10)
 			->withQueryString();
 

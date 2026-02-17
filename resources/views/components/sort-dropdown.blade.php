@@ -1,17 +1,32 @@
 <x-dropdown>
 	@php
-		$currentSort = request('sort', 'desc');
+		$currentSort = request('sort', 'asc');
+
+		$desc = "";
+		switch($currentSort)
+		{
+            case 'desc':
+				$desc = "oudste posts";
+			break;
+			case 'popular':
+				$desc = "populairste posts";
+			break;
+            case 'asc':
+            default:
+				$desc = "nieuwste posts";
+			break;
+
+		}
 	@endphp
 	<x-slot name="trigger">
 		<button class="py-2 pl-3 pr-9 text-sm font-semibold w-full lg:w-32 text-left flex lg:inline-flex">
-			Sorteren
+			{{ isset($currentSort) ? ucwords($desc) : 'sorteren' }}
 
 			<x-down-arrow class="pointer-events-none absolute"/>
 		</button>
 	</x-slot>
 
 	<x-dropdown-item
-{{--		href="{{ route('home') }}"--}}
 		href="{{ request()->fullUrlWithQuery(['sort' => 'asc']) }}"
 		:active="$currentSort === 'asc'"
 	>
