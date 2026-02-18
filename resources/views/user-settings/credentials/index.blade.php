@@ -5,9 +5,9 @@
 	@php
 		$user = auth()->user();
 	@endphp
-	<x-auth-form :bg="false">
+	<x-auth-form>
 		<x-user-setting heading="Gegevens wijzigen">
-			<form action="{{ route('user.settings.update') }}" method="POST" class="mt-10">
+			<form action="{{ route('user.settings.update') }}" method="POST" class="mt-10" enctype="multipart/form-data">
 				@csrf
 				<x-form.label name="naam"/>
 				<x-form.textarea name="name">
@@ -18,6 +18,12 @@
 				<x-form.textarea name="username">
 					{{ $user->username }}
 				</x-form.textarea>
+
+				<div class="flex mt-6">
+					<x-form.input name="avatar" type="file" required :value="old('avatar', $user->avatar)"/>
+					<img src="{{ asset('storage/' . $user->avatar) }}" alt="" class="rounded-xl ml-6" width="100">
+				</div>
+
 
 				<x-form.label name="email"/>
 				<x-form.textarea name="email">

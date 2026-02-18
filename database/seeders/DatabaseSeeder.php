@@ -32,12 +32,26 @@ class DatabaseSeeder extends Seeder
 			'name' => 'wiebe',
 			'email' => 'wiebe@datasculpt.nl',
 			'password' => Hash::make('wachtwoord'),
+			'avatar' => 'avatars/DXHoX9nr1PnjhZ4iKyPs0Ri3i5vZhW2I30T5H9xC.png',
 			'is_admin' => 1
+		]);
+
+		User::create([
+			'username' => 'test',
+			'name' => 'test',
+			'email' => 'test@test.com',
+			'password' => Hash::make('wachtwoord'),
+			'avatar' => 'avatars/qF2O8qAheDOQ3TIym746lwmVhT3I17xegHvs9pUv.png',
+			'is_admin' => 0
 		]);
 
 		Category::factory(5)->create();
 
+		User::factory(3)->create();
+
 		Post::factory(5)->create();
+
+//		Post::factory(5)->create();
 
 //		$users = User::factory(5)->create();
 //

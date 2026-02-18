@@ -8,17 +8,11 @@
 		<aside class="w-48 flex-shrink-0">
 			<h4 class="font-semibold mb-4">Links</h4>
 			<ul class="w-full">
-				@php
-					$display = 'display';
-					$details = 'details';
-					$bookmarks = 'bookmarks';
-					$likes = 'likes';
-				@endphp
 				<li>
-					<x-settings-link :name="$display"/>
-					<x-settings-link :name="$details"/>
-					<x-settings-link :name="$bookmarks"/>
-					<x-settings-link :name="$likes"/>
+					<x-settings-link name="display"/>
+					<x-settings-link name="details"/>
+					<x-settings-link name="bookmarks"/>
+					<x-settings-link name="likes"/>
 				</li>
 			</ul>
 		</aside>

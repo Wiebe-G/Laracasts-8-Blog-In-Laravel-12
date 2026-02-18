@@ -4,8 +4,7 @@
 	</x-slot:title>
 
 	<x-setting :heading="'Bewerk  post: ' . $post->title">
-{{--		@dd($post->author->id)--}}
-		<form method="POST" action="/admin/posts/{{$post->id}}" enctype="multipart/form-data">
+		<form method="POST" action="{{ route('admin.posts.update', $post->id) }}" enctype="multipart/form-data">
 			@csrf
 			@method('PATCH')
 

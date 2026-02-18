@@ -2,8 +2,9 @@
 <x-panel class="bg-gray-50">
 <article class="flex  space-x-4 ">
 	<div class="flex-shrink-0">
-		<img src="https://i.pravatar.cc/60?u={{$comment->user_id}}" alt="Avatar" width="60" height="60"
-		     class="rounded-xl">
+{{--		<img src="{{ asset('storage/' . $comment->author->avatar) }}" alt="Avatar" width="60" height="60"--}}
+{{--		     class="rounded-xl">--}}
+		<img src="{{ asset('storage/' . $comment->author->avatar) }}" alt="" class="rounded-full ml-6 border-2 border-green-500" width="50" height="50">
 	</div>
 
 	<div>

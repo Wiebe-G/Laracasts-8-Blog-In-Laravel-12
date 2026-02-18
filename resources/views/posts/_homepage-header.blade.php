@@ -3,7 +3,7 @@
 		Nieuwste <span class="text-blue-500">laravel blog</span> posts
 	</h1>
 
-	<div class="mt-8 space-y-2 lg:space-x-4 lg:space-y-0">
+	<div class="mt-8 flex flex-col space-y-2 lg:flex-row lg:space-x-4 lg:space-y-0">
 		<!--  Categorie -->
 		<div class="flex items-center rounded-xl bg-gray-100 px-3 h-10 lg:inline-flex">
 			<x-category-dropdown/>
