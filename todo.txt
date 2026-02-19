@@ -3,3 +3,5 @@ Volgen van auteurs en bericht sturen als ze posten, notificatie menu in header(?
 Views per post opnemen en laten zien
 
 Display settings ook echt doen (dark mode, miss font+font size, etc)
+
+Account verwijderen

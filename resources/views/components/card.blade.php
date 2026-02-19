@@ -46,14 +46,6 @@
 						</h5>
 					</div>
 				</div>
-
-{{--				<div>--}}
-{{--					<a href="#"--}}
-{{--					   class="rounded-full bg-gray-200 px-8 py-2 text-xs font-semibold transition-colors duration-300 w-fit--}}
-{{--					   hover:bg-gray-300">--}}
-{{--						Read More--}}
-{{--					</a>--}}
-{{--				</div>--}}
 			</footer>
 		</div>
 	</div>

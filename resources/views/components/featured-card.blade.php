@@ -36,9 +36,9 @@
 				{!! nl2br(e($post->excerpt)) !!}
 			</div>
 
-			<footer class="mt-8 flex items-center justify-between">
+			<footer class="mt-auto flex items-center justify-between">
 				<div class="flex items-center text-sm">
-					<img src="/images/lary-avatar.svg" alt="Lary avatar">
+					<img src="{{ asset('storage/' . $post->author->avatar) }}" alt="" class="rounded-full ml-6 border-2 border-green-500" width="50" height="50">
 					<div class="ml-3">
 						<h5 class="font-bold">
 							<a href="{{ route('profile.show', $post->author->username) }}">
@@ -46,13 +46,6 @@
 							</a>
 						</h5>
 					</div>
-				</div>
-
-				<div class="hidden lg:block">
-					<a href="#"
-					   class="rounded-full bg-gray-200 px-8 py-2 text-xs font-semibold transition-colors duration-300 hover:bg-gray-300">Read
-						More
-					</a>
 				</div>
 			</footer>
 		</div>
