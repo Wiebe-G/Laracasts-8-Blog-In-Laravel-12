@@ -1,7 +1,7 @@
 @props(['post'])
 <article
 	class="rounded-xl border border-black border-opacity-0 transition-colors duration-300 hover:border-opacity-5 hover:bg-gray-100
-	w-full ">
+	w-full">
 	<div class="px-5 py-6 lg:flex">
 		<div class="flex-1 lg:mr-8 ">
 			<img src="{{ asset('storage/' . $post->thumbnail) }}"
@@ -23,8 +23,8 @@
 					</h1>
 
 					<span class="mt-2 block text-xs text-gray-400">
-						Gepubliceerd op <time>{{ $post->created_at->diffForHumans() }}</time>
-						<br>
+						Gepubliceerd om <x-post-timer :post="$post"/> geleden
+
 						@if ($post->updated_at->gt($post->created_at->addSeconds(5)))
 							<span>Laatst bewerkt om: {{ $post->updated_at }}</span>
 						@endif
@@ -33,7 +33,7 @@
 			</header>
 
 			<div class="mt-2 space-y-4 text-sm">
-				<br>{!! $post->excerpt !!}
+				{!! nl2br(e($post->excerpt)) !!}
 			</div>
 
 			<footer class="mt-8 flex items-center justify-between">
@@ -41,7 +41,7 @@
 					<img src="/images/lary-avatar.svg" alt="Lary avatar">
 					<div class="ml-3">
 						<h5 class="font-bold">
-							<a href="/?author={{ $post->author->username }}">
+							<a href="{{ route('profile.show', $post->author->username) }}">
 								{{ $post->author->name }}
 							</a>
 						</h5>

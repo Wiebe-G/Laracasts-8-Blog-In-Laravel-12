@@ -95,6 +95,7 @@ class AdminController extends Controller
 			'excerpt' => 'required',
 			'body' => 'required',
 			'category_id' => ['required', Rule::exists('categories', 'id')],
+			'user_id' => ['sometimes', Rule::exists('users', 'id')],
 			'published' => ['required', 'boolean'],
 		]);
 	}

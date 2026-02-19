@@ -1,14 +1,14 @@
 @props(['post'])
 <article
-	{{ $attributes->merge(['class' => 'rounded-xl border border-black border-opacity-0 transition-colors duration-300 hover:border-opacity-5 hover:bg-gray-100']) }}>
-	<div class="px-5 py-6">
+	{{ $attributes->merge(['class' => 'flex flex-col h-full rounded-xl border border-black border-opacity-0 transition-colors duration-300 hover:border-opacity-5 hover:bg-gray-100']) }}>
+	<div class="px-5 py-6 flex flex-col flex-1">
 		<div>
 			<img src="{{ asset('storage/' . $post->thumbnail) }}"
 			     alt="Blog Post illustration"
-			     class="rounded-xl h-80 w-full">
+			     class="rounded-xl h-full w-full object-cover">
 		</div>
 
-		<div class="mt-8 flex flex-col justify-between">
+		<div class="mt-8 flex flex-col flex-1">
 			<header>
 				<div class="space-x-2">
 					<x-category-button :category="$post->category"/>
@@ -22,8 +22,8 @@
 					</h1>
 
 					<span class="mt-2 block text-xs text-gray-400">
-						Gepubliceerd op <time>{{ $post->created_at->diffForHumans() }}</time>
-						<br>
+						Gepubliceerd om <x-post-timer :post="$post"/> geleden
+
 						@if ($post->updated_at->gt($post->created_at->addSeconds(5)))
 							<span>Laatst bewerkt om: {{ $post->updated_at }}</span>
 						@endif
@@ -31,25 +31,29 @@
 				</div>
 			</header>
 
-			<div class="mt-4 space-y-4 text-sm">
-				{!! $post->excerpt !!}
+			<div class="mt-4 space-y-4 text-sm ">
+				{!! nl2br(e($post->excerpt)) !!}
 			</div>
 
-			<footer class="mt-8 flex items-center justify-between">
+			<footer class="mt-auto flex items-center justify-between">
 				<div class="flex items-center text-sm">
-					<img src="/images/lary-avatar.svg" alt="Lary avatar">
+					<img src="{{ asset('storage/' . $post->author->avatar) }}" alt="" class="rounded-full ml-6 border-2 border-green-500" width="50" height="50">
 					<div class="ml-3">
-						<h5 class="font-bold"><a
-								href="/?author={{ $post->author->username }}">{{ $post->author->name }}</a></h5>
+						<h5 class="font-bold">
+							<a href="{{ route('profile.show', $post->author->username) }}">
+								{{ $post->author->name }}
+							</a>
+						</h5>
 					</div>
 				</div>
 
-				<div>
-					<a href="#"
-					   class="rounded-full bg-gray-200 px-8 py-2 text-xs font-semibold transition-colors duration-300 hover:bg-gray-300">
-						Read More
-					</a>
-				</div>
+{{--				<div>--}}
+{{--					<a href="#"--}}
+{{--					   class="rounded-full bg-gray-200 px-8 py-2 text-xs font-semibold transition-colors duration-300 w-fit--}}
+{{--					   hover:bg-gray-300">--}}
+{{--						Read More--}}
+{{--					</a>--}}
+{{--				</div>--}}
 			</footer>
 		</div>
 	</div>

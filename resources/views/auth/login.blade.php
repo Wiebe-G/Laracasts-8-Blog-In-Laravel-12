@@ -10,6 +10,15 @@
 
 				<x-form.input name="password" type="password" autocomplete="current-password"/>
 
+				<div class="form-control mt-4">
+					<label class="label cursor-pointer justify-start">
+						<input type="checkbox"
+						       name="remember"
+						       class="checkbox">
+						<span class="label-text ml-2">Remember me</span>
+					</label>
+				</div>
+
 				<div class="mb-6 flex justify-end">
 					<x-submit-button>Log in</x-submit-button>
 				</div>

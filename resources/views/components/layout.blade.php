@@ -24,8 +24,13 @@
 
 		<div class="navbar-end gap-2">
 			@auth
+				@if(auth()->user()->avatar == null)
+					<span class="text-error text-xs">Geen avatar gevonden</span>
+				@else
+					<img src="{{ asset('storage/' . auth()->user()->avatar) }}" alt="" class="rounded-full ml-6 border-2 border-green-500" width="50" height="50">
+				@endif
 				<x-dropdown>
-					<x-slot name="trigger">
+					<x-slot name="trigger" class="flex flex-row">
 						<button class="text-sm">
 							Welkom, {{ auth()->user()->username }}
 						</button>

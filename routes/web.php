@@ -8,6 +8,7 @@ use App\Http\Controllers\BookmarkController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\LikesController;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserSettingsController;
 use Illuminate\Support\Facades\Route;
 
@@ -43,7 +44,7 @@ Route::middleware('admin')->group(function () {
 	Route::post('admin/posts/', [AdminController::class, 'store'])->name('admin.posts.store');
 	Route::get('admin/posts', [\App\Http\Controllers\AdminController::class, 'show']);
 	Route::get('admin/posts/{post:id}/edit', [AdminController::class, 'edit']);
-	Route::patch('admin/posts/{post:id}', [AdminController::class, 'update']);
+	Route::patch('admin/posts/{post:id}', [AdminController::class, 'update'])->name('admin.posts.update');
 	Route::delete('admin/posts/{post:id}', [AdminController::class, 'destroy']);
 });
 
@@ -67,3 +68,7 @@ Route::middleware('auth')->group(function () {
 	Route::put('/comments/{comment:id}', [CommentController::class, 'update'])->name('comments.update');
 	Route::delete('/comments/{comment:id}', [CommentController::class, 'destroy'])->name('comments.destroy');
 });
+
+Route::get('/profile/{user:username}', [ProfileController::class, 'show'])->name('profile.show');
+Route::get('/profile/{user:username}/posts', [ProfileController::class, 'posts'])->name('profile.posts');
+Route::get('/profile/{user:username}/comments', [ProfileController::class, 'comments'])->name('profile.comments');

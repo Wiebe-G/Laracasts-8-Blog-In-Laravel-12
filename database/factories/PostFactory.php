@@ -30,7 +30,7 @@ class PostFactory extends Factory
 			'excerpt' => $this->faker->text(),
 //            'body' => '<p>'.implode('</p><p>', $this->faker->paragraphs(6)).'</p>',
 			'body' => $this->faker->paragraphs(5, true),
-			'thumbnail' => 'thumbnails/KEMhv4MKKSxmuBFDjNYOO0fSM0EJlj5jRwV3KXuP.png',
+			'thumbnail' => 'thumbnails/NjGrGvpeWBP42USt0VD7b8Slg3nvHVhEUQNDyMnF.png',
 			'published' => true
 		];
 	}
