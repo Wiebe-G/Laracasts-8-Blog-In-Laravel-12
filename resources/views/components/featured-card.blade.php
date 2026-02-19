@@ -23,7 +23,7 @@
 					</h1>
 
 					<span class="mt-2 block text-xs text-gray-400">
-						Gepubliceerd om <x-post-timer :post="$post"/> geleden
+						Gepubliceerd om <x-post-timer :post="$post"/>
 
 						@if ($post->updated_at->gt($post->created_at->addSeconds(5)))
 							<span>Laatst bewerkt om: {{ $post->updated_at }}</span>
