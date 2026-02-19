@@ -13,6 +13,11 @@
 					<x-settings-link name="details"/>
 					<x-settings-link name="bookmarks"/>
 					<x-settings-link name="likes"/>
+					<a href="{{ route('profile.show', auth()->user()->username) }}"
+					   class="{{ request()->route()->named('profile.show') ? 'text-blue-500' : '' }}">
+						Profiel
+					</a>
+					<br>
 				</li>
 			</ul>
 		</aside>
