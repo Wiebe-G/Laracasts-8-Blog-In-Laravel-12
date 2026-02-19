@@ -48,6 +48,13 @@
 						href="{{ route('user.bookmarks') }}">
 						Instellingen
 					</x-dropdown-item>
+
+					<x-dropdown-item
+						href="{{ route('profile.show', auth()->user()->username) }}"
+						:active="request()->route()->named('profile.show')">
+						Profiel
+					</x-dropdown-item>
+
 					<x-dropdown-item href="#" x-date="{}"
 					                 @click.prevent="document.querySelector('#logout-form').submit()">Log uit
 					</x-dropdown-item>
