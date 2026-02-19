@@ -9,7 +9,7 @@
 	<br>
 
 	@forelse($user->posts as $post)
-		<x-card :post="$post"/>
+		<x-featured-card :post="$post"/>
 	@empty
 		<span class="text-center font-bold">Geen posts voor deze user</span>
 	@endforelse

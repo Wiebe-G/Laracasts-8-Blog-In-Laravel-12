@@ -17,7 +17,8 @@
 										<div class="flex items-center">
 											<div class="text-sm font-medium text-gray-900">
 												<a href="/posts/{{ $post->slug }}">
-													{{ $post->title }}
+													Post {{ $post->id }}. Auteur: {{ $post->author->username }}.
+													Titel: {{ $post->title }}
 												</a>
 											</div>
 										</div>
