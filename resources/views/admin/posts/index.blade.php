@@ -35,7 +35,10 @@
 											@method('DELETE')
 											{{--Todo: confirm voor verwijderen--}}
 
-											<button class="text-xs text-gray-400">Verwijder</button>
+											<button class="text-xs text-gray-400"
+											        onclick="return confirm('Weet u zeker dat u deze post wil verwijderen?')">
+												Verwijder
+											</button>
 										</form>
 									</td>
 								</tr>

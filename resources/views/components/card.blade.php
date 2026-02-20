@@ -2,10 +2,10 @@
 <article
 	{{ $attributes->merge(['class' => 'flex flex-col h-full rounded-xl border border-black border-opacity-0 transition-colors duration-300 hover:border-opacity-5 hover:bg-gray-100']) }}>
 	<div class="px-5 py-6 flex flex-col flex-1">
-		<div>
+		<div class="aspect-[16/9] w-full flex items-center justify-center rounded-xl">
 			<img src="{{ asset('storage/' . $post->thumbnail) }}"
 			     alt="Blog Post illustration"
-			     class="rounded-xl h-full w-full object-cover">
+			     class="max-h-full max-w-full object-contain">
 		</div>
 
 		<div class="mt-8 flex flex-col flex-1">
