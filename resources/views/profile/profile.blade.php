@@ -33,7 +33,7 @@
 
 				<div class="rounded-full ml-6 border-2 border-green-500">
 					<img src="{{ asset('storage/' . $user->avatar) }}" alt=""
-					     class=" z-10 w-28 h-fit ">
+					     class="z-10 w-full h-fit ">
 				</div>
 			</div>
 

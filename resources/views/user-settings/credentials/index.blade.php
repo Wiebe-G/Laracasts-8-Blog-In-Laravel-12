@@ -7,7 +7,8 @@
 	@endphp
 	<x-auth-form>
 		<x-user-setting heading="Gegevens wijzigen">
-			<form action="{{ route('user.settings.update') }}" method="POST" class="mt-10" enctype="multipart/form-data">
+			<form action="{{ route('user.settings.update') }}" method="POST" class="mt-10"
+			      enctype="multipart/form-data">
 				@csrf
 				<x-form.label name="naam"/>
 				<x-form.textarea name="name">
@@ -54,6 +55,16 @@
 						@endforeach
 					</ul>
 				@endif
+			</form>
+
+			<form method="POST" action="{{ route('user.settings.destroy', auth()->user()) }}">
+				@csrf
+				@method('DELETE')
+				<x-submit-button class="text-error text-xs"
+				                 onclick="return confirm('Weet u zeker dat u uw account wil verwijderen? Dit kan niet ongedaan worden?')"
+				                 :onList="true">
+					Verwijder account
+				</x-submit-button>
 			</form>
 		</x-user-setting>
 	</x-auth-form>

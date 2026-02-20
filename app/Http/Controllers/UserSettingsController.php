@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\UpdateUserInformation;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules\Password;
@@ -84,8 +87,17 @@ class UserSettingsController extends Controller
 	/**
 	 * Remove the specified resource from storage.
 	 */
-	public function destroy(string $id)
+	public function destroy(User $user)
 	{
-		//
+		if($user == null){
+			abort(Response::HTTP_UNAUTHORIZED);
+		}
+
+		$user->delete();
+
+		$maxId = DB::table('users')->max('id') + 1;
+		DB::statement("ALTER TABLE users AUTO_INCREMENT = $maxId");
+
+		return redirect('/')->with('success', 'Gegevens verwijderd. Ik hoop dat dat opzettelijk was');
 	}
 }
