@@ -5,7 +5,7 @@
 		<div class="aspect-[16/9] w-full flex items-center justify-center rounded-xl">
 			<img src="{{ asset('storage/' . $post->thumbnail) }}"
 			     alt="Blog Post illustration"
-			     class="max-h-full max-w-full object-contain">
+			     class="h-96 bg-base-200 max-w-full object-contain">
 		</div>
 
 		<div class="mt-8 flex flex-col flex-1">
@@ -16,7 +16,7 @@
 
 				<div class="mt-4">
 					<h1 class="text-3xl">
-						<a href="/posts/{{ $post->slug }}" class="link link-primary">
+						<a href="{{ route('posts.show', $post->slug) }}" class="link link-primary">
 							{{ $post->title }}
 						</a>
 					</h1>

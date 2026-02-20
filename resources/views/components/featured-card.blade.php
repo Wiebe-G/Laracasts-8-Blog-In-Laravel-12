@@ -1,15 +1,15 @@
 @props(['post'])
 <article
-	class="rounded-xl border border-black border-opacity-0 transition-colors duration-300 hover:border-opacity-5 hover:bg-gray-100
-	w-full">
+	class="rounded-xl border border-black border-opacity-0 transition-colors duration-300 hover:border-opacity-5 hover:bg-gray-100 col-span-6
+	max-w-6xl w-full ">
 	<div class="px-5 py-6 lg:flex">
-		<div class="flex-1 lg:mr-8 ">
+		<div class="lg:w-1/2 lg:mr-8 ">
 			<img src="{{ asset('storage/' . $post->thumbnail) }}"
 			     alt="Blog Post thumbnail"
-			     class="rounded-xl h-96 w-full">
+			     class="rounded-xl object-cover w-full">
 		</div>
 
-		<div class="flex flex-1 flex-col justify-between">
+		<div class="flex flex-col justify-between lg:w-1/2">
 			<header class="mt-8 lg:mt-0">
 				<div class="space-x-2">
 					<x-category-button :category="$post->category"/>
@@ -38,7 +38,8 @@
 
 			<footer class="mt-auto flex items-center justify-between">
 				<div class="flex items-center text-sm">
-					<img src="{{ asset('storage/' . $post->author->avatar) }}" alt="" class="rounded-full ml-6 border-2 border-green-500" width="50" height="50">
+					<img src="{{ asset('storage/' . $post->author->avatar) }}" alt=""
+					     class="rounded-full ml-6 border-2 border-green-500" width="50" height="50">
 					<div class="ml-3">
 						<h5 class="font-bold">
 							<a href="{{ route('profile.show', $post->author->username) }}">

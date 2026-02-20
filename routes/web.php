@@ -21,7 +21,7 @@ Route::post('/posts/{post:slug}/comments', [CommentController::class, 'store'])
 	->name('comments.store');
 
 // auth routes
-Route::get('register', [RegisterController::class, 'create']);
+Route::get('register', [RegisterController::class, 'create'])->name('register');
 Route::post('register', [RegisterController::class, 'store']);
 
 // Uitlogen
@@ -42,10 +42,10 @@ Route::post('login', LoginController::class)
 Route::middleware('admin')->group(function () {
 	Route::get('admin/posts/create', [AdminController::class, 'create'])->name('admin.posts.create');
 	Route::post('admin/posts/', [AdminController::class, 'store'])->name('admin.posts.store');
-	Route::get('admin/posts', [\App\Http\Controllers\AdminController::class, 'show']);
-	Route::get('admin/posts/{post:id}/edit', [AdminController::class, 'edit']);
+	Route::get('admin/posts', [\App\Http\Controllers\AdminController::class, 'show'])->name('admin.posts.show');
+	Route::get('admin/posts/{post:id}/edit', [AdminController::class, 'edit'])->name('admin.posts.edit');
 	Route::patch('admin/posts/{post:id}', [AdminController::class, 'update'])->name('admin.posts.update');
-	Route::delete('admin/posts/{post:id}', [AdminController::class, 'destroy']);
+	Route::delete('admin/posts/{post:id}', [AdminController::class, 'destroy'])->name('admin.posts.destroy');
 });
 
 Route::middleware('auth')->group(function () {

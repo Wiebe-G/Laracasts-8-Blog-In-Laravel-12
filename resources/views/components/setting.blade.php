@@ -14,7 +14,7 @@
 					</a>
 				</li>
 				<li>
-					<a href="/admin/posts/" class="{{ request()->is('admin/posts') ? 'text-blue-500' : '' }}">
+					<a href="{{ route('admin.posts.show') }}" class="{{ request()->route()->named('admin.posts.show') ? 'text-blue-500' : '' }}">
 						Alle posts
 					</a>
 				</li>

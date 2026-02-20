@@ -17,7 +17,7 @@
 										<td class="px-6 py-4 whitespace-nowrap">
 											<div class="flex items-center">
 												<div class="text-sm font-medium text-gray-900">
-													<a href="/posts/{{ $post->slug }}"
+													<a href="{{ route('posts.show', $post->slug) }}"
 													   target="_blank">
 														{{ $loop->iteration }} : {{ $post->title }}
 													</a>
@@ -26,13 +26,12 @@
 										</td>
 
 										<td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-											<form method="POST" action="bookmarks/{{ $post->id }}">
+											<form method="POST" action="{{ route('user.bookmarks.destroy', $post->id) }}">
 												@csrf
 												@method('DELETE')
-												{{--Todo: confirm voor verwijderen--}}
-
 												<button
 													class="text-blue-500 hover:text-blue-600"
+													onclick="return confirm('Weet u zeker dat u deze bookmark wil verwijderen?')"
 													type="submit">Verwijder
 												</button>
 											</form>

@@ -38,7 +38,7 @@
 	<div>
 		<h1 class="font-bold">Niet ingelogd</h1>
 		<span>
-				<a href="/login"
+				<a href="{{ route('login') }}"
 				   class="link link-primary text-blue-300">
 					Log in
 				</a> om reacties te posten

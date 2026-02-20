@@ -10,7 +10,7 @@
 	<br>
 	@forelse($user->comments as $comment)
 		<span>
-			<a href="/posts/{{ $comment->post->slug }}">
+			<a href="{{ route('posts.show', $comment->post->slug) }}">
 				<x-post-comment :comment="$comment"/>
 			</a>
 

@@ -16,7 +16,7 @@
 									<td class="px-6 py-4 whitespace-nowrap">
 										<div class="flex items-center">
 											<div class="text-sm font-medium text-gray-900">
-												<a href="/posts/{{ $post->slug }}">
+												<a href="{{ route('posts.show', $post->slug) }}">
 													Post {{ $post->id }}. Auteur: {{ $post->author->username }}.
 													Titel: {{ $post->title }}
 												</a>
@@ -25,16 +25,14 @@
 									</td>
 
 									<td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-										<a href="/admin/posts/{{ $post->id }}/edit"
+										<a href="{{ route('admin.posts.edit', $post->id) }}"
 										   class="text-blue-500 hover:text-blue-600">Bewerk</a>
 									</td>
 
 									<td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-										<form method="POST" action="/admin/posts/{{ $post->id }}">
+										<form method="POST" action="{{ route('admin.posts.destroy', $post->id) }}">
 											@csrf
 											@method('DELETE')
-											{{--Todo: confirm voor verwijderen--}}
-
 											<button class="text-xs text-gray-400"
 											        onclick="return confirm('Weet u zeker dat u deze post wil verwijderen?')">
 												Verwijder

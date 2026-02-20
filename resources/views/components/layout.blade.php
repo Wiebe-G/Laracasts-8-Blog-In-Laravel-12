@@ -17,7 +17,7 @@
 <section class="px-6 py-8 flex flex-col flex-1">
 	<nav class="md:flex md:items-center md:justify-between navbar">
 		<div class="navbar-start">
-			<a href="/">
+			<a href="{{ route('home') }}">
 				<img src="/images/logo.svg" alt="Laracasts Logo" width="165" height="16">
 			</a>
 		</div>
@@ -65,8 +65,8 @@
 					</form>
 				</x-dropdown>
 			@else
-				<a href="/login" class="btn btn-ghost btn-sm">Log in</a>
-				<a href="/register" class="btn btn-primary btn-sm">Maak account aan</a>
+				<a href="{{ route('login') }}" class="btn btn-ghost btn-sm">Log in</a>
+				<a href="{{ route('register') }}" class="btn btn-primary btn-sm">Maak account aan</a>
 			@endauth
 		</div>
 	</nav>

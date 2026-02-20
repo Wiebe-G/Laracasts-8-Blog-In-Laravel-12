@@ -27,7 +27,7 @@
 			<p class="text-center text-sm">
 				Nog geen account?
 				<br>
-				<a href="/register" class="link link-primary">
+				<a href="{{ route('register') }}" class="link link-primary">
 					Maak een account aan
 				</a>
 			</p>

@@ -16,7 +16,7 @@
 					<img src="{{ asset('storage/' . $post->author->avatar) }}" alt="" class="rounded-full ml-6 border-2 border-green-500" width="50" height="50">
 					<div class="ml-3 text-left">
 						<h5 class="font-bold">
-							<a href="/?author={{ $post->author->username }}">{{ $post->author->name }}</a>
+							<a href="{{ route('profile.show', $post->author->username) }}">{{ $post->author->username }}</a>
 						</h5>
 
 					</div>
@@ -63,7 +63,7 @@
 
 						@can('admin')
 							<span>
-								<a href="/admin/posts/{{ $post->id }}/edit"
+								<a href="{{ route('admin.posts.edit', $post->id) }}"
 								class="link link-primary"
 								target="_blank">
 									Bewerk post
@@ -73,7 +73,7 @@
 
 					@else
 						<span>
-							<a href="/login" class="link link-primary">Log in</a> om posts te liken of te bookmarken
+							<a href="{{ route('login') }}" class="link link-primary">Log in</a> om posts te liken of te bookmarken
 						</span>
 					@endauth
 				</div>
@@ -82,7 +82,7 @@
 
 			<div class="col-span-8">
 				<div class="hidden lg:flex justify-between mb-6">
-					<a href="/"
+					<a href="{{ route('home') }}"
 					   class="transition-colors duration-300 relative inline-flex items-center text-lg hover:text-blue-500">
 						<svg width="22" height="22" viewBox="0 0 22 22" class="mr-2">
 							<g fill="none" fill-rule="evenodd">
