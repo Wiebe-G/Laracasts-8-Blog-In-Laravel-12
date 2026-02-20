@@ -63,13 +63,18 @@ class UserSettingsController extends Controller
 			]);
 		}
 
-		$data = $request->only(['username', 'name', 'avatar', 'email']);
+		$data = $request->only(['username', 'name', 'avatar', 'email', 'bio']);
 
 		if ($request->filled('new_password')) {
 			$data['password'] = Hash::make($request->new_password);
 		}
 
-		$data['avatar'] = request()->file('avatar')->store('avatars', 'public');
+		if($request->filled('avatar')){
+			$data['avatar'] = request()->file('avatar')->store('avatars', 'public');
+		} else{
+			$data['avatar'] = $user->avatar;
+		}
+
 
 		$user->update($data);
 

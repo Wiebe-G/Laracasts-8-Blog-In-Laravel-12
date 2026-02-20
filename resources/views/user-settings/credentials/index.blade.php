@@ -20,10 +20,14 @@
 				</x-form.textarea>
 
 				<div class="flex mt-6">
-					<x-form.input name="avatar" type="file" required :value="old('avatar', $user->avatar)"/>
+					<x-form.input name="avatar" type="file" :value="old('avatar', $user->avatar)"/>
 					<img src="{{ asset('storage/' . $user->avatar) }}" alt="" class="rounded-xl ml-6" width="100">
 				</div>
 
+				<x-form.label name="bio (max 5 regels)"/>
+				<x-form.textarea name="bio" maxlength="255">
+					{{ $user->bio }}
+				</x-form.textarea>
 
 				<x-form.label name="email"/>
 				<x-form.textarea name="email">
