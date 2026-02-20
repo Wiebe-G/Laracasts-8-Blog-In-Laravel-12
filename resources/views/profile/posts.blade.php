@@ -8,9 +8,5 @@
 	</a>
 	<br>
 
-	@forelse($user->posts as $post)
-		<x-featured-card :post="$post"/>
-	@empty
-		<span class="text-center font-bold">Geen posts voor deze user</span>
-	@endforelse
+	<x-posts-grid :posts="$user->posts"/>
 </x-layout>
