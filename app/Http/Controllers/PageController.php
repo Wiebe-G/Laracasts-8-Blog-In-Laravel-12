@@ -29,7 +29,10 @@ class PageController extends Controller
 
 	public function PostsPage(Post $post)
 	{
+		// timestamps uitzetten zodat de view niet de post updated_at vernieuwt
+		$post->timestamps = false;
 		$post->increment('views_count');
+		$post->timestamps = true;
 		return view('posts.post', [
 			'post' => $post,
 		]);
