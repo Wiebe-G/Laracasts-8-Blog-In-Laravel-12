@@ -2,7 +2,7 @@
 <article
 	class="rounded-xl border border-black border-opacity-0 transition-colors duration-300 hover:border-opacity-5 hover:bg-gray-100 col-span-6
 	max-w-6xl w-full ">
-	<div class="px-5 py-6 lg:flex">
+	<div class="px-5 py-6 lg:flex min-w-4xl">
 		<div class="lg:w-1/2 lg:mr-8 ">
 			<img src="{{ asset('storage/' . $post->thumbnail) }}"
 			     alt="Blog Post thumbnail"
@@ -28,6 +28,8 @@
 						@if ($post->updated_at->gt($post->created_at->addSeconds(5)))
 							<span>Laatst bewerkt om: {{ $post->updated_at }}</span>
 						@endif
+						<br>
+						{{ $post->views_count }} keer bekeken
 					</span>
 				</div>
 			</header>

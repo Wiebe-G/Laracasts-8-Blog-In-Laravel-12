@@ -27,6 +27,24 @@ class DatabaseSeeder extends Seeder
 		Category::truncate();
 		DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
+		Category::create([
+			'name' => 'Persoonlijk',
+			'slug' => 'personal',
+			'created_at' => now(),
+		]);
+
+		Category::create([
+			'name' => 'Hobby',
+			'slug' => 'hobby',
+			'created_at' => now(),
+		]);
+
+		Category::create([
+			'name' => 'Werk',
+			'slug' => 'work',
+			'created_at' => now(),
+		]);
+
 		User::create([
 			'username' => 'wiebe',
 			'name' => 'wiebe',
@@ -45,20 +63,34 @@ class DatabaseSeeder extends Seeder
 			'is_admin' => 0
 		]);
 
-		Category::factory(5)->create();
+		Post::create([
+			'user_id' => 1,
+			'category_id' => 1,
+			'slug'=> 'eerste-post',
+			'title' => 'Eerste post',
+			'thumbnail' => 'thumbnails/roalbUxJtxksIO5vu0mVnTtQgpBEg7iaAEqF9aZo.png',
+			'excerpt' => 'Death minions',
+			'body' => 'It goes it goes it goes it goes GUILLOTINE',
+			'published' => '1',
+			'likes'=> '0',
+			'views_count' => '0',
+			'created_at' => now(),
+			'published_at' => now(),
+		]);
 
-		User::factory(3)->create();
-
-		Post::factory(5)->create();
-
-//		Post::factory(5)->create();
-
-//		$users = User::factory(5)->create();
-//
-//		$users->each(function ($user) {
-//			Post::factory(3)->create([
-//				'user_id' => $user->id,
-//			]);
-//		});
+		Post::create([
+			'user_id' => 1,
+			'category_id' => 2,
+			'slug'=> 'ready-or-not',
+			'title' => 'Ready or not',
+			'thumbnail' => 'thumbnails/4T8jpIP1TiHiLEVcmVkdd9gc7sF4dZXnLGxfzZDj.png',
+			'excerpt' => 'Grenate',
+			'body' => 'Goede tactiek',
+			'published' => '1',
+			'likes'=> '0',
+			'views_count' => '0',
+			'created_at' => now(),
+			'published_at' => now(),
+		]);
 	}
 }

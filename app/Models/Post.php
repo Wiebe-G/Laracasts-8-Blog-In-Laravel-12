@@ -7,66 +7,71 @@ use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
-    use HasFactory;
-    //
+	use HasFactory;
 
-    protected $fillable = [
-        'title',
-        'excerpt',
-        'body',
-        'slug',
-        'category_id',
-        'user_id',
-    ];
+	//
 
-    protected $with = [
-        'category', 'author',
-    ];
+	protected $fillable = [
+		'user_id',
+		'category_id',
+		'slug',
+		'title',
+		'thumbnail',
+		'excerpt',
+		'body',
+		'published',
+		'likes',
+		'views_count'
+	];
 
-    public function scopeFilter($query, array $filters)
-    {
-        $query
-            ->when($filters['search'] ?? false, fn ($query, $search) => $query->where(fn ($query) => $query->where('title', 'like', '%'.$search.'%')
-                ->orWhere('body', 'like', '%'.$search.'%'))
-            );
+	protected $with = [
+		'category', 'author',
+	];
 
-        $query
-            ->when($filters['category'] ?? false, fn ($query, $category) => $query->whereHas('category', fn ($query) => $query->where('slug', $category))
-            );
+	public function scopeFilter($query, array $filters)
+	{
+		$query
+			->when($filters['search'] ?? false, fn($query, $search) => $query->where(fn($query) => $query->where('title', 'like', '%' . $search . '%')
+				->orWhere('body', 'like', '%' . $search . '%'))
+			);
 
-        $query
-            ->when($filters['author'] ?? false, fn ($query, $author) => $query->whereHas('author', fn ($query) => $query->where('username', $author))
-            );
-    }
+		$query
+			->when($filters['category'] ?? false, fn($query, $category) => $query->whereHas('category', fn($query) => $query->where('slug', $category))
+			);
+
+		$query
+			->when($filters['author'] ?? false, fn($query, $author) => $query->whereHas('author', fn($query) => $query->where('username', $author))
+			);
+	}
 
 	public function scopeSort($query, $sort)
 	{
-		if($sort == 'popular'){
+		if ($sort == 'popular') {
 			return $query->withCount('likes')
 				->orderBy('likes_count', 'desc');
 		}
 		return $query->orderByRaw("GREATEST(created_at, updated_at)" . ($sort === 'desc' ? 'asc' : 'desc'));
 	}
 
-    public function getRouteKeyName()
-    {
-        return 'slug';
-    }
+	public function getRouteKeyName()
+	{
+		return 'slug';
+	}
 
 	public function comments()
 	{
 		return $this->hasMany(Comment::class);
 	}
 
-    public function category()
-    {
-        return $this->belongsTo(Category::class);
-    }
+	public function category()
+	{
+		return $this->belongsTo(Category::class);
+	}
 
-    public function author()
-    {
-        return $this->belongsTo(User::class, 'user_id');
-    }
+	public function author()
+	{
+		return $this->belongsTo(User::class, 'user_id');
+	}
 
 	public function likes()
 	{

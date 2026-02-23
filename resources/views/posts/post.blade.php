@@ -61,6 +61,8 @@
 							<span>Gebookmarkt door {{ count($post->bookmarkedBy ) }} gebruiker(s)</span>
 						</form>
 
+						{{ $post->views_count }} keer bekeken
+
 						@can('admin')
 							<span>
 								<a href="{{ route('admin.posts.edit', $post->id) }}"

@@ -29,6 +29,7 @@ class PageController extends Controller
 
 	public function PostsPage(Post $post)
 	{
+		$post->increment('views_count');
 		return view('posts.post', [
 			'post' => $post,
 		]);
