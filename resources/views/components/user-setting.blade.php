@@ -9,7 +9,6 @@
 			<h4 class="font-semibold mb-4">Links</h4>
 			<ul class="w-full">
 				<li>
-					<x-settings-link name="display"/>
 					<x-settings-link name="details"/>
 					<x-settings-link name="bookmarks"/>
 					<x-settings-link name="likes"/>

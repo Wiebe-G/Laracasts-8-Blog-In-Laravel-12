@@ -16,7 +16,7 @@
 
 				<div class="mt-4">
 					<h1 class="text-3xl">
-						<a href="{{ route('posts.show', $post->slug) }}" class="link link-primary">
+						<a href="{{ route('posts.show', $post->slug) }}" class="link link-primary dark:text-gray-200">
 							{{ $post->title }}
 						</a>
 					</h1>
