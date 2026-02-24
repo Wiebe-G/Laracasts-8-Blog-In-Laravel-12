@@ -46,6 +46,7 @@ Route::middleware('admin')->group(function () {
 	Route::get('admin/posts/{post:id}/edit', [AdminController::class, 'edit'])->name('admin.posts.edit');
 	Route::patch('admin/posts/{post:id}', [AdminController::class, 'update'])->name('admin.posts.update');
 	Route::delete('admin/posts/{post:id}', [AdminController::class, 'destroy'])->name('admin.posts.destroy');
+	Route::get('admin/users/show', [AdminController::class, 'index'])->name('admin.users.show');
 });
 
 Route::middleware('auth')->group(function () {

@@ -1,6 +1,6 @@
 @props(['post'])
 <article
-	{{ $attributes->merge(['class' => 'flex flex-col h-full rounded-xl border border-black border-opacity-0 transition-colors duration-300 hover:border-opacity-5 hover:bg-gray-100']) }}>
+	{{ $attributes->merge(['class' => 'flex flex-col h-full rounded-xl border border-black border-opacity-0 transition-colors duration-300 hover:border-opacity-5 hover:bg-gray-100 dark:hover:bg-gray-700']) }}>
 	<div class="px-5 py-6 flex flex-col flex-1">
 		<div class="aspect-[16/9] w-full flex items-center justify-center rounded-xl">
 			<img src="{{ asset('storage/' . $post->thumbnail) }}"
@@ -27,6 +27,7 @@
 						@if ($post->updated_at->gt($post->created_at->addSeconds(5)))
 							<span>Laatst bewerkt om: {{ $post->updated_at }}</span>
 						@endif
+						<br>
 						{{ $post->views_count }} keer bekeken
 					</span>
 				</div>

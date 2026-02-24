@@ -29,6 +29,7 @@
 	<x-dropdown-item
 		href="{{ request()->fullUrlWithQuery(['sort' => 'asc']) }}"
 		:active="$currentSort === 'asc'"
+		class="dark:bg-gray-700"
 	>
 		Nieuwste post eerst
 	</x-dropdown-item>
@@ -36,6 +37,7 @@
 	<x-dropdown-item
 		href="{{ request()->fullUrlWithQuery(['sort' => 'desc']) }}"
 		:active="$currentSort === 'desc'"
+		class="dark:bg-gray-700"
 	>
 		Oudste post eerst
 	</x-dropdown-item>
@@ -43,6 +45,7 @@
 	<x-dropdown-item
 		href="{{ request()->fullUrlWithQuery(['sort' => 'popular']) }}"
 		:active="$currentSort === 'popular'"
+		class="dark:bg-gray-700"
 	>
 		Populairste posts eerst
 	</x-dropdown-item>

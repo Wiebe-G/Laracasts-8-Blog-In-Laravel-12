@@ -18,6 +18,11 @@
 						Alle posts
 					</a>
 				</li>
+				<li>
+					<a href="{{ route('admin.users.show') }}" class="{{ request()->route()->named('admin.users.show') ? 'text-blue-500' : '' }}">
+						Alle users
+					</a>
+				</li>
 			</ul>
 		</aside>
 

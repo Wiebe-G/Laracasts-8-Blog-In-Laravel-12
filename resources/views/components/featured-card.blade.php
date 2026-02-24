@@ -1,7 +1,8 @@
 @props(['post'])
 <article
 	class="rounded-xl border border-black border-opacity-0 transition-colors duration-300 hover:border-opacity-5 hover:bg-gray-100 col-span-6
-	max-w-6xl w-full ">
+	max-w-6xl w-full
+	dark:hover:bg-gray-700">
 	<div class="px-5 py-6 lg:flex min-w-4xl">
 		<div class="lg:w-1/2 lg:mr-8 ">
 			<img src="{{ asset('storage/' . $post->thumbnail) }}"
@@ -17,7 +18,7 @@
 
 				<div class="mt-4">
 					<h1 class="text-3xl">
-						<a href="{{ route('posts.show', $post) }}" class="link link-primary">
+						<a href="{{ route('posts.show', $post) }}" class="link link-primary text-black dark:text-white">
 							{{ $post->title }}
 						</a>
 					</h1>

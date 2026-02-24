@@ -1,9 +1,7 @@
 @props(['comment'])
-<x-panel class="bg-gray-50">
-<article class="flex  space-x-4 ">
+<x-panel class="bg-gray-50 hover:bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-800">
+<article class="flex space-x-4 ">
 	<div class="flex-shrink-0">
-{{--		<img src="{{ asset('storage/' . $comment->author->avatar) }}" alt="Avatar" width="60" height="60"--}}
-{{--		     class="rounded-xl">--}}
 		<img src="{{ asset('storage/' . $comment->author->avatar) }}" alt="" class="rounded-full ml-6 border-2 border-green-500" width="50" height="50">
 	</div>
 

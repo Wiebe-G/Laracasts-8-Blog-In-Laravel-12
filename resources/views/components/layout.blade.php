@@ -13,9 +13,9 @@
 	@vite(['resources/css/app.css', 'resources/js/app.ts'])
 </head>
 
-<body style="font-family: Open Sans, sans-serif" class="min-h-screen flex flex-col">
+<body style="font-family: Open Sans, sans-serif" class="min-h-screen flex flex-col dark:bg-black dark:text-white">
 <section class="px-6 py-8 flex flex-col flex-1">
-	<nav class="md:flex md:items-center md:justify-between navbar">
+	<nav class="md:flex md:items-center md:justify-between navbar dark:bg-gray-800">
 		<div class="navbar-start">
 			<a href="{{ route('home') }}">
 				<img src="/images/logo.svg" alt="Laracasts Logo" width="165" height="16">
@@ -27,8 +27,10 @@
 				@if(auth()->user()->avatar == null)
 					<span class="text-error text-xs">Geen avatar gevonden</span>
 				@else
-					<img src="{{ asset('storage/' . auth()->user()->avatar) }}" alt="" class="rounded-full ml-6 border-2 border-green-500" width="50" height="50">
+					<img src="{{ asset('storage/' . auth()->user()->avatar) }}" alt="user avatar"
+					     class="rounded-full ml-6 border-2 border-green-500" width="50" height="50">
 				@endif
+
 				<x-dropdown>
 					<x-slot name="trigger" class="flex flex-row">
 						<button class="text-sm">
@@ -36,8 +38,10 @@
 						</button>
 					</x-slot>
 
+
 					@can('admin')
-						<x-dropdown-item href="{{ route('admin.posts.create') }}" :active="request()->is('admin/posts/create')">
+						<x-dropdown-item href="{{ route('admin.posts.create') }}"
+						                 :active="request()->is('admin/posts/create')">
 							Nieuwe post
 						</x-dropdown-item>
 						<x-dropdown-item href="{{ route('admin.posts.store') }}" :active="request()->is('admin/posts')">
@@ -71,6 +75,7 @@
 		</div>
 	</nav>
 
+
 	{{-- Chirper flash message --}}
 	<x-flash/>
 
@@ -78,8 +83,9 @@
 		{{ $slot }}
 	</main>
 
-	<footer class="mt-16 rounded-xl border border-black border-opacity-5 bg-gray-100 px-10 py-16 text-center"
-	        id="Footer">
+	<footer
+		class="mt-16 rounded-xl border border-black border-opacity-5 bg-gray-100 px-10 py-16 text-center dark:bg-gray-800 dark:text-gray-100"
+		id="Footer">
 		<div>
 			<p>© {{ now()->year }} blog - Built with Laravel and ❤️</p>
 		</div>

@@ -1,3 +1,3 @@
 Volgen van auteurs en bericht sturen als ze posten, notificatie menu in header(?)
 
-Display settings ook echt doen (dark mode, miss font+font size, etc)
+Dark mode toggle
