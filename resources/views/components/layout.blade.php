@@ -40,8 +40,9 @@
 
 
 					@can('admin')
-						<x-dropdown-item href="{{ route('admin.posts.create') }}"
-						                 :active="request()->is('admin/posts/create')">
+						<x-dropdown-item
+							href="{{ route('admin.posts.create') }}"
+							:active="request()->is('admin/posts/create')">
 							Nieuwe post
 						</x-dropdown-item>
 						<x-dropdown-item href="{{ route('admin.posts.store') }}" :active="request()->is('admin/posts')">
@@ -89,6 +90,10 @@
 		<div>
 			<p>© {{ now()->year }} blog - Built with Laravel and ❤️</p>
 		</div>
+		@auth
+			<a href="{{ route('feedback') }}"
+			   class="link">Feedback</a>
+		@endauth
 	</footer>
 </section>
 </body>

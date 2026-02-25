@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\BookmarkController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\LikesController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\ProfileController;
@@ -50,6 +51,12 @@ Route::middleware('admin')->group(function () {
 });
 
 Route::middleware('auth')->group(function () {
+	// feedback
+	Route::get('/feedback', [FeedbackController::class, 'index'])
+		->name('feedback');
+	Route::post('/feedback', [FeedbackController::class, 'store'])
+		->name('feedback.submit');
+
 	// bookmarks
 	Route::post('/bookmark/{post:id}', [BookmarkController::class, 'update'])->name('bookmark.update');
 	Route::get('/settings/bookmarks', [BookmarkController::class, 'show'])->name('user.bookmarks');

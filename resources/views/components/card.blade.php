@@ -26,8 +26,8 @@
 
 						@if ($post->updated_at->gt($post->created_at->addSeconds(5)))
 							<span>Laatst bewerkt om: {{ $post->updated_at }}</span>
+							<br>
 						@endif
-						<br>
 						{{ $post->views_count }} keer bekeken
 					</span>
 				</div>
