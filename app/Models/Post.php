@@ -49,6 +49,8 @@ class Post extends Model
 		if ($sort == 'popular') {
 			return $query->withCount('likes')
 				->orderBy('likes_count', 'desc');
+		} else if ($sort == 'views') {
+			return $query->orderBy('views_count', 'desc');
 		}
 		return $query->orderByRaw("GREATEST(created_at, updated_at)" . ($sort === 'desc' ? 'asc' : 'desc'));
 	}
@@ -102,5 +104,10 @@ class Post extends Model
 	public function isLikedBy($user): bool
 	{
 		return $this->LikedBy()->where('user_id', $user->id)->exists();
+	}
+
+	public function views()
+	{
+		return $this->views()->count();
 	}
 }

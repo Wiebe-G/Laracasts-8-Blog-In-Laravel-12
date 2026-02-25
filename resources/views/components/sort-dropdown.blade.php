@@ -11,6 +11,9 @@
 			case 'popular':
 				$desc = "populairste posts";
 			break;
+			case 'views':
+				$desc = "Meest bekeken";
+				break;
             case 'asc':
             default:
 				$desc = "nieuwste posts";
@@ -48,5 +51,13 @@
 		class="dark:bg-gray-700"
 	>
 		Populairste posts eerst
+	</x-dropdown-item>
+
+	<x-dropdown-item
+		href="{{ request()->fullUrlWithQuery(['sort' => 'views']) }}"
+		:active="$currentSort === 'views'"
+		class="dark:bg-gray-700"
+	>
+		Meest bekeken posts eerst
 	</x-dropdown-item>
 </x-dropdown>
