@@ -1,7 +1,5 @@
 Volgen van auteurs en bericht sturen als ze posten, notificatie menu in header(?)
 
-Filteren op meest bekeken posts
-
 Contact form
 
 Dark mode toggle
