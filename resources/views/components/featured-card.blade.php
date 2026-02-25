@@ -7,7 +7,7 @@
 		<div class="lg:w-1/2 lg:mr-8 ">
 			<img src="{{ asset('storage/' . $post->thumbnail) }}"
 			     alt="Blog Post thumbnail"
-			     class="rounded-xl object-cover w-full">
+			     class="rounded-xl object-contain w-full max-h-96 h-auto ">
 		</div>
 
 		<div class="flex flex-col justify-between lg:w-1/2">

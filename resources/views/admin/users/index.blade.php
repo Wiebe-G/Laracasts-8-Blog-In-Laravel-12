@@ -29,17 +29,6 @@
 											Profiel
 										</a>
 									</td>
-
-{{--									<td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">--}}
-{{--										<form method="POST" action="{{ route('admin.posts.destroy', $post->id) }}">--}}
-{{--											@csrf--}}
-{{--											@method('DELETE')--}}
-{{--											<button class="text-xs text-gray-400"--}}
-{{--											        onclick="return confirm('Weet u zeker dat u deze post wil verwijderen?')">--}}
-{{--												Verwijder--}}
-{{--											</button>--}}
-{{--										</form>--}}
-{{--									</td>--}}
 								</tr>
 							@endforeach
 							</tbody>
