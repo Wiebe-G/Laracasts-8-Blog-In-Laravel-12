@@ -13,7 +13,8 @@
 				</p>
 
 				<div class="flex items-center lg:justify-center text-sm mt-4">
-					<img src="{{ asset('storage/' . $post->author->avatar) }}" alt="" class="rounded-full ml-6 border-2 border-green-500" width="50" height="50">
+					<img src="{{ asset('storage/' . $post->author->avatar) }}" alt=""
+					     class="rounded-full ml-6 border-2 border-green-500" width="50" height="50">
 					<div class="ml-3 text-left">
 						<h5 class="font-bold">
 							<a href="{{ route('profile.show', $post->author->username) }}">{{ $post->author->username }}</a>
@@ -21,24 +22,27 @@
 
 					</div>
 				</div>
+				@php
+					$isLiked = $post->isLikedBy(auth()->user());
+				@endphp
 				<div class="flex flex-col space-y-2">
 					@auth
-						<form method="POST" action="{{ $post->isLikedBy(auth()->user())
+						<form method="POST" action="{{ $isLiked
  							? route('like.destroy', $post)
  							: route('like.update', $post)}}">
 							@csrf
 
-							@if($post->isLikedBy(auth()->user()))
+							@if($isLiked)
 								@method('DELETE')
 							@endif
 
 							<x-submit-button
-							:onList="$post->isLikedBy(auth()->user())">
-								{{ $post->isLikedBy(auth()->user())
+								:onList="$isLiked">
+								{{ $isLiked
  								? 'Verwijder like'
  								: 'Like post'}}
 							</x-submit-button>
-							<span>Geliket door {{ count($post->likedBy) }} gebruiker(s)</span>
+							<span>Geliket door {{ $post->liked_by_count}} gebruiker(s)</span>
 						</form>
 
 
@@ -58,7 +62,7 @@
 									? 'Verwijder uit bookmarks'
 									: 'Bookmark post' }}
 							</x-submit-button>
-							<span>Gebookmarkt door {{ count($post->bookmarkedBy ) }} gebruiker(s)</span>
+							<span>Gebookmarkt door {{ $post->bookmarked_by_count  }} gebruiker(s)</span>
 						</form>
 
 						{{ $post->views_count }} keer bekeken
@@ -66,8 +70,8 @@
 						@can('admin')
 							<span>
 								<a href="{{ route('admin.posts.edit', $post->id) }}"
-								class="link link-primary"
-								target="_blank">
+								   class="link link-primary"
+								   target="_blank">
 									Bewerk post
 								</a>
 							</span>
@@ -79,7 +83,6 @@
 						</span>
 					@endauth
 				</div>
-
 			</div>
 
 			<div class="col-span-8">
@@ -116,6 +119,7 @@
 			<section class="col-span-8 col-start-5 mt-10 space-y-6">
 				@include('posts._add-comment-form')
 
+				<span>{{ $post->comments_count }} comments</span>
 				@forelse($post->comments as $comment)
 					<x-post-comment :comment="$comment"/>
 				@empty
