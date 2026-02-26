@@ -10,7 +10,7 @@
 		</div>
 
 		<!-- Zoeken -->
-		<div class="relative flex items-center rounded-xl bg-gray-100 px-3 h-10 lg:inline-flex dark:bg-gray-700 dark:text-gray-200"">
+		<div class="relative flex items-center rounded-xl bg-gray-100 px-3 h-10 lg:inline-flex dark:bg-gray-700 dark:text-gray-200">
 			<form method="GET" action="/">
 				@if (request('category'))
 					<input type="hidden" name="category" value="{{ request('category') }}">

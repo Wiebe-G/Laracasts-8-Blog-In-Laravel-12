@@ -1,10 +1,10 @@
 @props(['active' => false])
 
 @php
-	$classes = 'DropDownButton dark:bg-gray-700';
+	$classes = 'DropDownButton dark:bg-gray-700 v';
 
 	if ($active) {
-	    $classes .= 'bg-blue-500 text-white';
+	    $classes .= 'bg-blue-500 dark:text-white';
 	}
 @endphp
 <a {{ $attributes(['class' => $classes]) }}>
