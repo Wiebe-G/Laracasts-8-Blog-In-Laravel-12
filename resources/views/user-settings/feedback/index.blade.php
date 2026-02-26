@@ -7,12 +7,21 @@
 		<x-user-setting heading="Uw feedback">
 			<x-admin-table-parts>
 				<ul>
-				@forelse($userFeedback as $feedback)
-					<li><a href="{{ route('user.settings.showFeedback', $feedback->id) }}">{{ $loop->iteration }} : {{ $feedback->title }}</a></li>
-					{{ $userFeedback->links() }}
+					@forelse($userFeedback as $feedback)
+						<li>
+							<a href="{{ route('user.settings.showFeedback', $feedback->id) }}">
+								{{ $loop->iteration }} : {{ $feedback->title }}
+							</a>
+						</li>
+						@if($feedback->reply)
+							<span class="text-sm text-blue-400">Een admin heeft gereageerd!</span>
+						@else
+							<span>Nog geen reactie</span>
+						@endif
+						{{ $userFeedback->links() }}
 					@empty
 						<span>U heeft nog geen feedback geleverd</span>
-				@endforelse
+					@endforelse
 				</ul>
 			</x-admin-table-parts>
 		</x-user-setting>

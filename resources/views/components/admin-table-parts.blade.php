@@ -1,4 +1,4 @@
-<div class="flex flex-col w-full">
+<div class="flex flex-col w-full lg:min-w-3xl">
 	<div class="-my-2 max-w-full overflow-x-auto wrap-break-word sm:-mx-6 lg:-mx-8">
 		<div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
 			<div class="shadow border-b border-gray-200 sm:rounded-lg w-full break-all">

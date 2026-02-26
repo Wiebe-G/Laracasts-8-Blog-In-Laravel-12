@@ -6,6 +6,7 @@
 	<x-setting heading="Zie alle feedback">
 		<span class="font-semibold text-center">Aantal feedback: {{ count($feedback) }}</span>
 		<x-admin-table-parts>
+			{{--TODO: Filteren op posts waarop nog niet is gereageerd--}}
 			@foreach ($feedback as $iterator)
 				<tr class="max-w-screen">
 					<td class="px-6 py-4 whitespace-normal break-all">
@@ -17,6 +18,10 @@
 									<br>
 									Titel: {{ $iterator->title }}
 									</a>
+									<br>
+									@if($iterator->reply)
+										<span class="text-sm text-blue-400">Gereageerd op dit bericht</span>
+									@endif
 								</span>
 							</div>
 						</div>
