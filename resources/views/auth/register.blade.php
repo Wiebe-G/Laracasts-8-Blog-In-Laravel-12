@@ -4,7 +4,7 @@
 	</x-slot:title>
 	<x-auth-form :bg="true">
 		<h1 class="text-center font-bold text-xl">Registreer een account</h1>
-		<form action="/register" method="POST" class="mt-10">
+		<form action="{{ route('register.store') }}" method="POST" class="mt-10">
 			@csrf
 			<x-form.input name="name"/>
 

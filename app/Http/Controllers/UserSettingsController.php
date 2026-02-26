@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\UpdateUserInformation;
+use App\Models\Feedback;
+use App\Models\FeedbackReply;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -99,5 +101,21 @@ class UserSettingsController extends Controller
 		DB::statement("ALTER TABLE users AUTO_INCREMENT = $maxId");
 
 		return redirect('/')->with('success', 'Gegevens verwijderd. Ik hoop dat dat opzettelijk was');
+	}
+
+	public function feedback()
+	{
+		$user = Auth::user();
+		$userFeedback = Feedback::where('user_id', $user->id)->paginate();
+		return view('user-settings.feedback.index', [
+			'user' => $user,
+			'userFeedback' => $userFeedback
+		]);
+	}
+
+	public function showFeedback(Feedback $feedback)
+	{
+		$feedback->load('reply.user');
+		return view('user-settings.feedback.show', compact('feedback'));
 	}
 }

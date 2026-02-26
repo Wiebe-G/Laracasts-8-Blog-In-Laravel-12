@@ -12,8 +12,8 @@
 					<x-settings-link name="details"/>
 					<x-settings-link name="bookmarks"/>
 					<x-settings-link name="likes"/>
-					<a href="{{ route('profile.show', auth()->user()->username) }}"
-					   class="{{ request()->route()->named('profile.show') ? 'text-blue-500' : '' }}">
+					<x-settings-link name="feedback"/>
+					<a href="{{ route('profile.show', auth()->user()->username) }}">
 						Profiel
 					</a>
 					<br>

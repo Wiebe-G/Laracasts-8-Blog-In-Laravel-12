@@ -37,7 +37,7 @@ class FeedbackController extends Controller
 
 		Feedback::create($attributes);
 
-        return back()->with('success', 'Feedback verstuurd');
+        return redirect(route('user.settings.feedback'))->with('success', 'Feedback verstuurd');
     }
 
     /**

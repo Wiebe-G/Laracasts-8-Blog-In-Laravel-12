@@ -16,4 +16,9 @@ class Feedback extends Model
 	{
 		return $this->belongsTo(User::class, 'user_id');
 	}
+
+	public function reply()
+	{
+		return $this->hasone(FeedbackReply::class, 'feedback_id');
+	}
 }

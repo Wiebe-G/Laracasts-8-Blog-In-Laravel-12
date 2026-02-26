@@ -93,6 +93,8 @@
 		@auth
 			<a href="{{ route('feedback') }}"
 			   class="link">Feedback</a>
+		@else
+			<a href="{{ route('login') }}" class="link link-primary dark:text-blue-200">Log in</a> om feedback te geven
 		@endauth
 	</footer>
 </section>

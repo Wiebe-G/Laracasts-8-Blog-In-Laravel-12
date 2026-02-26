@@ -26,21 +26,25 @@
 				<td>
 					@if($hasReply)
 						<span>
-							Reactie van admin <span class="text-blue-500">{{ $replyUser->user->username }}</span>.
+							Reactie van admin
+							<a href="{{ route('profile.show', $replyUser->user->username) }}"
+							   class="text-blue-500">
+								{{ $replyUser->user->username }}
+							</a>
 							<br>
 							Reactie is:
 							<br>
 							{{ $hasReply->message }}
 						</span>
 					@else
-					<form method="POST"
-					      action="{{ route('admin.feedback.store', $feedback->id) }}">
-						@csrf
-						<x-form.textarea name="message" maxlength="255"/>
-						<x-submit-button>
-							Reageer
-						</x-submit-button>
-					</form>
+						<form method="POST"
+						      action="{{ route('admin.feedback.store', $feedback->id) }}">
+							@csrf
+							<x-form.textarea name="message" maxlength="255"/>
+							<x-submit-button>
+								Reageer
+							</x-submit-button>
+						</form>
 					@endif
 				</td>
 			</tr>
