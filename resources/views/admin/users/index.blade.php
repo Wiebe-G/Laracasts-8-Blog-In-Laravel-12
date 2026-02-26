@@ -5,37 +5,27 @@
 
 	<x-setting heading="Zie alle users">
 		<span class="font-semibold text-center">Aantal posts: {{ count($users) }}</span>
-		<div class="flex flex-col">
-			<div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-				<div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-					<div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
-						<table class="min-w-full divide-y divide-gray-200">
-							<tbody class="bg-white divide-y divide-gray-200 dark:bg-gray-700">
-							@foreach ($users as $user)
-								<tr>
-									<td class="px-6 py-4 whitespace-nowrap">
-										<div class="flex items-center">
-											<div class="text-sm font-medium text-gray-900">
-												<span>
-													User {{ $user->id }}. Naam: {{ $user->username }}.
-												</span>
-											</div>
-										</div>
-									</td>
+		<x-admin-table-parts>
+			@foreach ($users as $user)
+				<tr>
+					<td class="px-6 py-4 whitespace-nowrap">
+						<div class="flex items-center">
+							<div class="text-sm font-medium text-gray-900 dark:text-gray-200">
+								<span>
+									User {{ $user->id }}. Naam: {{ $user->username }}.
+								</span>
+							</div>
+						</div>
+					</td>
 
-									<td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-										<a href="{{ route('profile.show', $user->username) }}"
-										class="text-blue-500 hover:text-blue-600">
-											Profiel
-										</a>
-									</td>
-								</tr>
-							@endforeach
-							</tbody>
-						</table>
-					</div>
-				</div>
-			</div>
-		</div>
+					<td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+						<a href="{{ route('profile.show', $user->username) }}"
+						   class="text-blue-500 hover:text-blue-600">
+							Profiel
+						</a>
+					</td>
+				</tr>
+			@endforeach
+		</x-admin-table-parts>
 	</x-setting>
 </x-layout>

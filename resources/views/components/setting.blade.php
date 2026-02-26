@@ -1,5 +1,5 @@
 @props(['heading'])
-<section class="px-6 py-8">
+<section class="px-6 py-8 w-full">
 	<h1 class="font-bold text-center text-lg mb-8 pb-2 border-b">
 		{{ $heading }}
 	</h1>
@@ -23,10 +23,16 @@
 						Alle users
 					</a>
 				</li>
+				<li>
+					<a href="{{ route('admin.feedback.show') }}" class="{{ request()->route()->named('admin.feedback.show') ? 'text-blue-500' : '' }}">
+						Alle feedback
+					</a>
+				</li>
 			</ul>
 		</aside>
 
-		<main class="flex-1">
+{{--		<main class="flex-1 max-w-full overflow-scroll">--}}
+		<main class="flex-1 min-w0">
 			<x-panel>
 				{{ $slot }}
 			</x-panel>

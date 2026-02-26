@@ -48,6 +48,13 @@ Route::middleware('admin')->group(function () {
 	Route::patch('admin/posts/{post:id}', [AdminController::class, 'update'])->name('admin.posts.update');
 	Route::delete('admin/posts/{post:id}', [AdminController::class, 'destroy'])->name('admin.posts.destroy');
 	Route::get('admin/users/show', [AdminController::class, 'index'])->name('admin.users.show');
+
+	Route::get('/admin/feedback', [AdminController::class, 'feedback'])
+		->name('admin.feedback.show');
+	Route::get('/admin/feedback/{feedback:id}', [AdminController::class, 'showFeedback'])
+		->name('admin.feedback.showOne');
+	Route::post('/admin/feedback/{feedback:id}', [AdminController::class, 'storeFeedback'])
+		->name('admin.feedback.store');
 });
 
 Route::middleware('auth')->group(function () {

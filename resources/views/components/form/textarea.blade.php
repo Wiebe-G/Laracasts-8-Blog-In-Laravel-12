@@ -7,6 +7,7 @@
 		name="{{ $name }}"
 		id="{{ $name }}"
 		required
+		maxlength="255"
 		{{ $attributes(['value'=> old($name)]) }}>{{ $slot ?? old($name) }}
 		</textarea>
 

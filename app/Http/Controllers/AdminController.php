@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Feedback;
+use App\Models\FeedbackReply;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
 
 class AdminController extends Controller
@@ -101,5 +104,37 @@ class AdminController extends Controller
 			'user_id' => ['sometimes', Rule::exists('users', 'id')],
 			'published' => ['required', 'boolean'],
 		]);
+	}
+
+	public function feedback()
+	{
+		return view('admin.feedback.index', [
+			'feedback' => Feedback::all()
+		]);
+	}
+
+	public function showFeedback(Feedback $feedback)
+	{
+		$hasReply = DB::table('feedback_reply')->where('feedback_id', $feedback->id)->first();
+		$replyUser = FeedbackReply::with('user')->first();
+		return view('admin.feedback.show', [
+			'feedback' => $feedback,
+			'hasReply' => $hasReply,
+			'replyUser' => $replyUser
+		]);
+	}
+
+	public function storeFeedback(Feedback $feedback)
+	{
+		$attributes = request()->validate([
+			'message' => ['required', 'string', 'max:255']
+		]);
+
+		$attributes['feedback_id'] = $feedback->id;
+		$attributes['user_id'] = auth()->id();
+
+		FeedbackReply::create($attributes);
+
+		return back()->with('success', 'Reactie is aangemaakt!');
 	}
 }
