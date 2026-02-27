@@ -30,7 +30,8 @@
 					@foreach( \App\Models\Category::all() as $category)
 						<option
 							value="{{ $category->id }}"
-							{{ old('category_id') == $category->id ? 'selected' : '' }}>{{ ucwords($category->name) }}</option>
+							{{ old('category_id') == $category->id ? 'selected' : '' }}
+							class="dark:bg-gray-700">{{ ucwords($category->name) }}</option>
 					@endforeach
 				</select>
 
@@ -43,7 +44,8 @@
 
 					@foreach(\App\Models\User::all() as $author)
 						<option value="{{ $author->id }}"
-						{{ old('user_id', $post->user_id) == $author->id ? 'selected' : '' }}>
+						        {{ old('user_id', $post->user_id) == $author->id ? 'selected' : '' }}
+						        class="dark:bg-gray-700">
 							{{ ucwords($author->name) }}
 						</option>
 					@endforeach

@@ -21,6 +21,8 @@
 									<br>
 									@if($iterator->reply)
 										<span class="text-sm text-blue-400">Gereageerd op dit bericht</span>
+									@else
+										<span class="text-sm text-blue-400">Nog niet gereageerd op dit bericht</span>
 									@endif
 								</span>
 							</div>

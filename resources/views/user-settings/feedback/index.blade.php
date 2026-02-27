@@ -8,20 +8,20 @@
 			<x-admin-table-parts>
 				<ul>
 					@forelse($userFeedback as $feedback)
-						<li>
+						<td class="px-6 py-4">
 							<a href="{{ route('user.settings.showFeedback', $feedback->id) }}">
 								{{ $loop->iteration }} : {{ $feedback->title }}
 							</a>
-						</li>
+						</td>
 						@if($feedback->reply)
-							<span class="text-sm text-blue-400">Een admin heeft gereageerd!</span>
+							<div class="text-sm text-blue-400">Een admin heeft gereageerd!</div>
 						@else
-							<span>Nog geen reactie</span>
+							<div>Nog geen reactie</div>
 						@endif
-						{{ $userFeedback->links() }}
 					@empty
-						<span>U heeft nog geen feedback geleverd</span>
+						<td class="px-6 py-4">U heeft nog geen feedback geleverd</td>
 					@endforelse
+						{{ $userFeedback->links() }}
 				</ul>
 			</x-admin-table-parts>
 		</x-user-setting>

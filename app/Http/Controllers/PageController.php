@@ -19,7 +19,7 @@ class PageController extends Controller
 			->where('published', true)
 			->filter($request->only(['search', 'category', 'author']))
 			->sort($request->input('sort', 'asc'))
-			->paginate(10)
+			->paginate(9)
 			->withQueryString();
 
 		return view('posts.home', [

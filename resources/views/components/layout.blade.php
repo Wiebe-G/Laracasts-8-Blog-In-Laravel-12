@@ -30,7 +30,7 @@
 					<x-avatar type="user"/>
 				@endif
 
-				<x-dropdown>
+				<x-dropdown class="mr-16">
 					<x-slot name="trigger" class="flex flex-row">
 						<button class="text-sm">
 							Welkom, {{ auth()->user()->username }}

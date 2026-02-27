@@ -32,7 +32,7 @@
 		</aside>
 
 {{--		<main class="flex-1 max-w-full overflow-scroll">--}}
-		<main class="flex-1 min-w0">
+		<main class="flex-1 w-4xl">
 			<x-panel>
 				{{ $slot }}
 			</x-panel>

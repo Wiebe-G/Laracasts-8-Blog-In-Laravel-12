@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Comment;
+use App\Models\Post;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -36,8 +38,12 @@ class ProfileController extends Controller
      */
     public function show(User $user)
     {
+		$posts = $user->posts()->paginate(5, ['*'], 'posts');
+		$comments = $user->comments()->paginate(5, ['*'], 'comments');
         return view('profile.profile', [
-			'user' => $user
+			'user' => $user,
+			'posts' => $posts,
+			'comments' => $comments,
 		]);
     }
 

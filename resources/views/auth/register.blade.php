@@ -30,7 +30,7 @@
 		<p class="text-center text-sm">
 			Heeft u al een account?
 			<br>
-			<a href="{{ route('login') }}" class="link link-primary">Log in</a>
+			<a href="{{ route('login') }}" class="link link-primary dark:text-gray-200">Log in</a>
 		</p>
 	</x-auth-form>
 </x-layout>

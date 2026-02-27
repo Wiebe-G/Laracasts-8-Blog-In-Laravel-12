@@ -8,8 +8,7 @@
 				<img src="{{ asset('storage/' . $post->thumbnail) }}" alt="" class="rounded-xl">
 
 				<p class="mt-4 block text-gray-400 text-xs">
-					Published
-					<time>{{ $post->created_at->diffForHumans() }}</time>
+					Gepubliceerd om <x-post-timer :post="$post"/>
 				</p>
 
 				<div class="flex items-center lg:justify-center text-sm mt-4">
@@ -69,7 +68,7 @@
 						@can('admin')
 							<span>
 								<a href="{{ route('admin.posts.edit', $post->id) }}"
-								   class="link link-primary"
+								   class="link link-primary dark:text-gray-200"
 								   target="_blank">
 									Bewerk post
 								</a>
@@ -106,7 +105,7 @@
 					</div>
 				</div>
 
-				<h1 class="font-bold text-3xl lg:text-4xl mb-10">
+				<h1 class="font-bold text-3xl lg:text-4xl mb-10 break-words">
 					{{ $post->title }}
 				</h1>
 

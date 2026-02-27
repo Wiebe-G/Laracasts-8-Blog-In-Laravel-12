@@ -6,7 +6,6 @@
 			$avatar = auth()->user()?->avatar ?? 'avatar';
 		break;
 		case 'author':
-			$post;
             $avatar = $post->author->avatar;
 		break;
 		default:

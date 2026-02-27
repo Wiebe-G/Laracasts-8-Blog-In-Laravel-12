@@ -1,6 +1,6 @@
 @props(['bg' => false])
 @php
-	$classes = "max-w-3xl w-screen mx-auto mt-10 p-6 rounded-xl";
+	$classes = "max-w-4xl w-screen mx-auto mt-10 p-6 rounded-xl";
 
 	if($bg)
 	{

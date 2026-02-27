@@ -1,7 +1,7 @@
 @props(['active' => false])
 
 @php
-	$classes = 'DropDownButton dark:bg-gray-700 v';
+	$classes = 'DropDownButton dark:bg-gray-700 ';
 
 	if ($active) {
 	    $classes .= 'bg-blue-500 dark:text-white';

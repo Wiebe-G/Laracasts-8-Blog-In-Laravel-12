@@ -1,11 +1,13 @@
 @props(['post'])
 <article
-	{{ $attributes->merge(['class' => 'flex flex-col h-full rounded-xl border border-black border-opacity-0 transition-colors duration-300 hover:border-opacity-5 hover:bg-gray-100 dark:hover:bg-gray-700']) }}>
+	{{ $attributes->merge(['class' => 'flex flex-col h-full rounded-xl
+							border border-black border-opacity-0 transition-colors duration-300
+							hover:border-opacity-5 hover:bg-gray-100 dark:hover:bg-gray-700']) }}>
 	<div class="px-5 py-6 flex flex-col flex-1">
 		<div class="aspect-[16/9] w-full flex items-center justify-center rounded-xl">
 			<img src="{{ asset('storage/' . $post->thumbnail) }}"
 			     alt="Blog Post illustration"
-			     class="h-96 bg-base-200 max-w-full object-contain">
+			     class="h-96 bg-base-200 w-full object-contain">
 		</div>
 
 		<div class="mt-8 flex flex-col flex-1">
@@ -14,23 +16,9 @@
 					<x-category-button :category="$post->category"/>
 				</div>
 
-				<div class="mt-4">
-					<h1 class="text-3xl">
-						<a href="{{ route('posts.show', $post->slug) }}" class="link link-primary dark:text-gray-200">
-							{{ $post->title }}
-						</a>
-					</h1>
 
-					<span class="mt-2 block text-xs text-gray-400">
-						Gepubliceerd om <x-post-timer :post="$post"/>
+					<x-post-title-and-timer :post="$post"/>
 
-						@if ($post->updated_at->gt($post->created_at->addSeconds(5)))
-							<span>Laatst bewerkt om: {{ $post->updated_at }}</span>
-							<br>
-						@endif
-						{{ $post->views_count }} keer bekeken
-					</span>
-				</div>
 			</header>
 
 			<div class="mt-4 space-y-4 text-sm ">

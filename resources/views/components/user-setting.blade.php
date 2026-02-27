@@ -21,7 +21,7 @@
 			</ul>
 		</aside>
 
-		<main class="flex-1">
+		<main class="flex-1 w-4xl">
 			<x-panel>
 				{{ $slot }}
 			</x-panel>
