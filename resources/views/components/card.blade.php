@@ -1,11 +1,13 @@
 @props(['post'])
 <article
-	{{ $attributes->merge(['class' => 'flex flex-col h-full rounded-xl border border-black border-opacity-0 transition-colors duration-300 hover:border-opacity-5 hover:bg-gray-100 dark:hover:bg-gray-700']) }}>
+	{{ $attributes->merge(['class' => 'flex flex-col h-full rounded-xl
+							border border-black border-opacity-0 transition-colors duration-300
+							hover:border-opacity-5 hover:bg-gray-100 dark:hover:bg-gray-700']) }}>
 	<div class="px-5 py-6 flex flex-col flex-1">
 		<div class="aspect-[16/9] w-full flex items-center justify-center rounded-xl">
 			<img src="{{ asset('storage/' . $post->thumbnail) }}"
 			     alt="Blog Post illustration"
-			     class="h-96 bg-base-200 max-w-full object-contain">
+			     class="h-full min-h-[400px] bg-base-200 max-w-full object-contain">
 		</div>
 
 		<div class="mt-8 flex flex-col flex-1">

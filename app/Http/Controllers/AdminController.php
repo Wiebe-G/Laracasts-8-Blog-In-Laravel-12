@@ -43,7 +43,7 @@ class AdminController extends Controller
 
 		Post::create($attributes);
 
-		return redirect('/')->with('success', 'Post is aangemaakt!');
+		return redirect()->route('posts.show', $attributes['slug'])->with('success', 'Post is aangemaakt!');
 	}
 
 	/**

@@ -8,8 +8,7 @@
 				<img src="{{ asset('storage/' . $post->thumbnail) }}" alt="" class="rounded-xl">
 
 				<p class="mt-4 block text-gray-400 text-xs">
-					Published
-					<time>{{ $post->created_at->diffForHumans() }}</time>
+					Gepubliceerd om <x-post-timer :post="$post"/>
 				</p>
 
 				<div class="flex items-center lg:justify-center text-sm mt-4">
