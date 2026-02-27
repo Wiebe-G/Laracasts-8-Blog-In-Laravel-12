@@ -83,9 +83,6 @@ class LikesController extends Controller
 
 		$user->likes()->detach($post->id);
 
-		$maxId = DB::table('post_user_liked')->max('id') + 1;
-		DB::statement("ALTER TABLE post_user_liked AUTO_INCREMENT = $maxId;");
-
 		return back()->with('success', 'Like verwijderd');
     }
 }

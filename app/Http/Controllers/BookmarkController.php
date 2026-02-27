@@ -83,9 +83,6 @@ class BookmarkController extends Controller
 
 		$user->bookmarkedPosts()->toggle($post->id);
 
-		$maxId = DB::table('post_user')->max('id') + 1;
-		DB::statement("ALTER TABLE post_user AUTO_INCREMENT = $maxId;");
-
 		return back()->with('success', 'Bookmark verwijderd');
     }
 }

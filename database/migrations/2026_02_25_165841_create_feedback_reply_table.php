@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('feedback_reply', function (Blueprint $table) {
             $table->id();
-			$table->foreignId('feedback_id')->constrained('feedback');
-			$table->foreignId('user_id')->constrained('user');
+			$table->foreignId('feedback_id')->constrained('feedback')->cascadeOnDelete();
+			$table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
 			$table->longText('message');
             $table->timestamps();
         });

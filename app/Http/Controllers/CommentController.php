@@ -96,9 +96,6 @@ class CommentController extends Controller
 
 		$comment->delete();
 
-		$maxId = DB::table('comments')->max('id') + 1;
-		DB::statement("ALTER TABLE comments AUTO_INCREMENT = $maxId;");
-
 		return back()->with('success', 'Comment verwijderd');
     }
 }

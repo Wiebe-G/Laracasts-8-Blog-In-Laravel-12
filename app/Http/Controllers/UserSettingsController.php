@@ -96,9 +96,6 @@ class UserSettingsController extends Controller
 
 		$user->delete();
 
-		$maxId = DB::table('users')->max('id') + 1;
-		DB::statement("ALTER TABLE users AUTO_INCREMENT = $maxId");
-
 		return redirect('/')->with('success', 'Gegevens verwijderd. Ik hoop dat dat opzettelijk was');
 	}
 
