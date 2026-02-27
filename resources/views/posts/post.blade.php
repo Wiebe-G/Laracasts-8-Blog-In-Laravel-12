@@ -13,8 +13,7 @@
 				</p>
 
 				<div class="flex items-center lg:justify-center text-sm mt-4">
-					<img src="{{ asset('storage/' . $post->author->avatar) }}" alt=""
-					     class="rounded-full ml-6 border-2 border-green-500" width="50" height="50">
+					<x-avatar type="author" :post="$post"/>
 					<div class="ml-3 text-left">
 						<h5 class="font-bold">
 							<a href="{{ route('profile.show', $post->author->username) }}">{{ $post->author->username }}</a>

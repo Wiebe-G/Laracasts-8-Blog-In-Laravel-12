@@ -27,8 +27,7 @@
 				@if(auth()->user()->avatar == null)
 					<span class="text-error text-xs">Geen avatar gevonden</span>
 				@else
-					<img src="{{ asset('storage/' . auth()->user()->avatar) }}" alt="user avatar"
-					     class="rounded-full ml-6 border-2 border-green-500 h-[50px] w-[50px]">
+					<x-avatar type="user"/>
 				@endif
 
 				<x-dropdown>
