@@ -26,7 +26,7 @@ class UpdateUserInformation extends FormRequest
 		return array_merge([
 			'username' => ['required', 'max:255'],
 			'name' => ['required', 'max:255'],
-			'avatar' => ['nullable', 'image'],
+			'avatar' => ['sometimes', 'nullable', 'image'],
 			'email' => ['required', 'email', 'max:255'],
 			'bio' => ['nullable', 'max:255'],
 		], $this->isMethod('POST') || $this->filled('password') ?  [

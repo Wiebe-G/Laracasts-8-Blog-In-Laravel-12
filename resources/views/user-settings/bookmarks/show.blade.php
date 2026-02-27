@@ -42,7 +42,7 @@
 									<span>
 									Geen posts gevonden.
 									<br>
-									<a href="/" class="link link-primary">Vind wat posts</a>
+									<a href="/" class="link link-primary dark:text-gray-200">Vind wat posts</a>
 									die u wilt bewaren.
 								</span>
 								@endforelse

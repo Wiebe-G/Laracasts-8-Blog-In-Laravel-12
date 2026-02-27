@@ -22,7 +22,7 @@
 
 				<div class="flex mt-6">
 					<x-form.input name="avatar" type="file" :value="old('avatar', $user->avatar)"/>
-					<img src="{{ asset('storage/' . $user->avatar) }}" alt="" class="rounded-xl ml-6" width="100">
+					<img src="{{ asset('storage/' . $user->avatar) }}" alt="Avatar" class="rounded-xl ml-6" width="100">
 				</div>
 
 				<x-form.label name="bio (max 5 regels)"/>

@@ -60,7 +60,7 @@ class UserSettingsController extends Controller
 	 */
 	public function update(UpdateUserInformation $request)
 	{
-		$user = $request->user();
+		$user = auth()->user();
 
 		if (Hash::check($request->new_password, $user->password)) {
 			return back()->withErrors([
@@ -68,18 +68,17 @@ class UserSettingsController extends Controller
 			]);
 		}
 
-		$data = $request->only(['username', 'name', 'avatar', 'email', 'bio']);
+		$data = $request->only(['username', 'name', 'email', 'bio']);
 
 		if ($request->filled('new_password')) {
 			$data['password'] = Hash::make($request->new_password);
 		}
 
-		if($request->filled('avatar')){
+		if ($request->hasFile('avatar')) {
 			$data['avatar'] = request()->file('avatar')->store('avatars', 'public');
-		} else{
+		} else {
 			$data['avatar'] = $user->avatar;
 		}
-
 
 		$user->update($data);
 
@@ -91,7 +90,7 @@ class UserSettingsController extends Controller
 	 */
 	public function destroy(User $user)
 	{
-		if($user == null){
+		if ($user == null) {
 			abort(Response::HTTP_UNAUTHORIZED);
 		}
 

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
+use Illuminate\Validation\Rules\Password;
 
 class RegisterController extends Controller
 {
@@ -15,7 +16,11 @@ class RegisterController extends Controller
 			'name' => 'required|max:255',
 			'username' => 'required|min:3|max:255', Rule::unique('users', 'username'),
 			'email' => 'required|email|max:255|unique:users,email', Rule::unique('users', 'email'),
-			'password' => 'required|min:7|max:255',
+			'password' => ['required', 'min:7', 'max:255',
+				Password::min(8)
+				->letters()
+				->mixedCase()
+				->numbers()],
 		]);
 
 		try {
