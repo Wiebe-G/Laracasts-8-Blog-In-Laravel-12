@@ -1,7 +1,5 @@
 Volgen van auteurs en bericht sturen als ze posten, notificatie menu in header(?)
 
-Contact form (gedaan, nu nog aan admins laten zien, misschien een manier om er op te reageren, en voor gebruikers om hun eigen feedback te zien)
-
 Dark mode toggle
 
 Reageren op comments
