@@ -68,7 +68,7 @@
 						@can('admin')
 							<span>
 								<a href="{{ route('admin.posts.edit', $post->id) }}"
-								   class="link link-primary"
+								   class="link link-primary dark:text-gray-200"
 								   target="_blank">
 									Bewerk post
 								</a>
