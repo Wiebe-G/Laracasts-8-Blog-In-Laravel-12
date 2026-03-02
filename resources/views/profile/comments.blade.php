@@ -13,7 +13,6 @@
 			<a href="{{ route('posts.show', $comment->post->slug) }}">
 				<x-post-comment :comment="$comment"/>
 			</a>
-
 		</span>
 	@empty
 		<span>Geen comments van deze user</span>

@@ -3,7 +3,6 @@
 		Profiel van {{ $user->username }}
 	</x-slot:title>
 	@php
-		$selected = "posts";
 		$role = "Gebruiker";
 		if($user->is_admin == true)
 		{
@@ -13,20 +12,19 @@
 	<x-auth-form :bg="true">
 		<div class="max-w-4xl mx-auto px-4">
 			<div class="flex items-center justify-center gap-6 w-full">
-
 				<div class="text-center w-full">
 					<h1 class="font-semibold text-center col-span-4">profiel van {{ $user->username }}</h1>
 					<span>Rol: {{ $role }}</span>
 					<br>
 					<div class="w-full max-w-xl mx-auto">
-					<span class="break-words whitespace-pre-line">
-						Bio:
+						<span>Bio:</span>
+						<span class="break-words whitespace-pre-line line-clamp-5 text-overflow-none overflow-y-scroll">
 						{{ $user->bio }}
 					</span>
 					</div>
 					<br>
 					<span>
-					Lid sinds: {{ $user->created_at }}
+					Lid sinds: {{ $user->created_at->diffForHumans() }}
 				</span>
 					<br>
 				</div>
@@ -37,16 +35,46 @@
 				</div>
 			</div>
 
-			<div class="w-full">
-				<div class="w-full flex text-center">
-					<div class="w-1/2 link link-primary">
-						<a href="{{ route('profile.posts', $user->username) }}">Posts</a>
+			<div class="w-full grid grid-cols-2 items-start justify-items-center text-center">
+				<div>
+					<h2>Posts</h2>
+					<div class="flex flex-col gap-4 w-full">
+						@forelse($posts as $post)
+							<a href="{{ route('posts.show', $post->slug) }}"
+							   target="_blank">
+								<div class="flex items-center gap-4 max-w-full break-all">
+									<img src="{{ asset('storage/' . $post->thumbnail) }}" alt="Post thumbnail"
+									     class="rounded-full ml-6 border-2 border-green-500 h-[50px] w-[50px]">
+									<div>
+										<strong>{{ $post->title }}</strong>
+										<p>{{ $post->excerpt }}</p>
+									</div>
+								</div>
+							</a>
+						@empty
+							<span>Geen posts van deze user</span>
+						@endforelse
+						{{ $posts->appends(['comments' => request('comments', 1)])->links() }}
 					</div>
-					<div class="w-1/2 link link-primary">
-						<a href="{{ route('profile.comments', $user->username) }}">
-							Comments
-						</a>
-					</div>
+				</div>
+
+				<div class="mt-0">
+					<h2>Comments</h2>
+					@forelse($comments as $comment)
+						<span>
+							<a href="{{ route('posts.show', $comment->post->slug) }}"
+							   target="_blank">
+								<div class="flex items-center gap-4 max-w-full break-all">
+									<img src="{{ asset('storage/' . $user->avatar) }}" alt="Post thumbnail"
+									     class="rounded-full ml-6 border-2 border-green-500 h-[50px] w-[50px]">
+										<strong>{{ $comment->body }}</strong>
+								</div>
+							</a>
+						</span>
+					@empty
+						<span>Geen comments van deze user</span>
+					@endforelse
+					{{ $comments->appends(['posts' => request('posts', 1)])->links() }}
 				</div>
 			</div>
 		</div>
