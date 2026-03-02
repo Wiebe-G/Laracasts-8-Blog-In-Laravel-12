@@ -41,7 +41,8 @@
 					<div class="flex flex-col gap-4 w-full">
 						@forelse($posts as $post)
 							<a href="{{ route('posts.show', $post->slug) }}"
-							   target="_blank">
+							   target="_blank"
+								class="border-2 border-blue-500">
 								<div class="flex items-center gap-4 max-w-full break-all">
 									<img src="{{ asset('storage/' . $post->thumbnail) }}" alt="Post thumbnail"
 									     class="rounded-full ml-6 border-2 border-green-500 h-[50px] w-[50px]">
