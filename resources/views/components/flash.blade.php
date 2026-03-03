@@ -10,3 +10,10 @@
 		</div>
 	</div>
 @endif
+@if(session('error'))
+	<div class="toast toast-top toast-center">
+		<div class="alert alert-error animate-fade-out">
+			<span>{{ session('error') }}</span>
+		</div>
+	</div>
+ @endif

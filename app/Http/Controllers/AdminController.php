@@ -71,7 +71,6 @@ class AdminController extends Controller
 	public function update(Post $post)
 	{
 		$attributes = $this->validatePost($post);
-
 		if ($attributes['thumbnail'] ?? false) {
 			$attributes['thumbnail'] = request()->file('thumbnail')->store('thumbnails', 'public');
 		}
@@ -96,7 +95,7 @@ class AdminController extends Controller
 
 		return request()->validate([
 			'title' => 'required',
-			'thumbnail' => $post->exists ? ['image', 'mimes:jpeg,png,jpg,gif'] : ['required', 'image', 'mimes:jpeg,png,jpg,gif'],
+			'thumbnail' => $post->exists ? ['image', 'mimes:jpeg,png,jpg,gif,svg', 'max:512000'] : ['required', 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:512000'],
 			'slug' => ['required', Rule::unique('posts', 'slug')->ignore($post)],
 			'excerpt' => 'required',
 			'body' => 'required',

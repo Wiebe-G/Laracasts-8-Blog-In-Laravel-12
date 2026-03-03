@@ -29,6 +29,9 @@ class PageController extends Controller
 
 	public function PostsPage(Post $post)
 	{
+		if ($post->published == false) {
+			return back()->with('error' , 'Deze post is niet openbaar');
+		}
 		$post->loadCount('likedBy');
 		$post->loadCount('bookmarkedBy');
 		$post->loadCount('comments');
