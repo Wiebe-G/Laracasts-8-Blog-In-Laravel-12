@@ -38,12 +38,17 @@ class ProfileController extends Controller
      */
     public function show(User $user)
     {
+		$followerCount = $user->followers()->count();
+		$authUser = auth()->user();
 		$posts = $user->posts()->paginate(5, ['*'], 'posts');
 		$comments = $user->comments()->paginate(5, ['*'], 'comments');
+		$isFollowing = $authUser->followees()->where('user_id', $user->id)->exists();
         return view('profile.profile', [
 			'user' => $user,
 			'posts' => $posts,
 			'comments' => $comments,
+			'isFollowing' => $isFollowing,
+			'followerCount' => $followerCount
 		]);
     }
 
