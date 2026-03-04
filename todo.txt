@@ -1,5 +1,3 @@
-Volgen van auteurs en bericht sturen als ze posten, notificatie menu in header(?)
-
 Dark mode toggle
 
 Reageren op comments
