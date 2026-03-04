@@ -26,14 +26,34 @@
 					<span>
 					Lid sinds: {{ $user->created_at->diffForHumans() }}
 				</span>
-					<br>
 				</div>
 
-				<div class="rounded-full ml-6 border-2 border-green-500">
+				<div class="rounded-full ml-6 ">
 					<img src="{{ asset('storage/' . $user->avatar) }}" alt=""
-					     class="z-10 w-full h-fit ">
+					     class="z-10 w-full h-fit border-2 border-green-500">
+					<span class="flex justify-center">{{ $followerCount }} volger(s)</span>
+					<div class="w-full flex justify-center mt-2">
+						<form
+							action="{{ $isFollowing
+								? route('follow.destroy', $user)
+								: route('follow.store', $user)}}"
+							method="POST">
+							@csrf
+
+							@if($isFollowing)
+								@method('DELETE')
+							@endif
+
+							<x-submit-button
+								:onList="$isFollowing">
+								{{ $isFollowing
+								? 'Stop met volgen' : 'Volg gebruiker' }}
+							</x-submit-button>
+						</form>
+					</div>
 				</div>
 			</div>
+
 
 			<div class="w-full grid grid-cols-2 items-start justify-items-center text-center">
 				<div>
@@ -42,7 +62,7 @@
 						@forelse($posts as $post)
 							<a href="{{ route('posts.show', $post->slug) }}"
 							   target="_blank"
-								class="border-2 border-blue-500">
+							   class="border-2 border-blue-500">
 								<div class="flex items-center gap-4 max-w-full break-all">
 									<img src="{{ asset('storage/' . $post->thumbnail) }}" alt="Post thumbnail"
 									     class="rounded-full ml-6 border-2 border-green-500 h-[50px] w-[50px]">

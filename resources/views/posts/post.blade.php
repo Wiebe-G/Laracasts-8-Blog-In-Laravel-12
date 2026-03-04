@@ -77,7 +77,7 @@
 
 					@else
 						<span>
-							<a href="{{ route('login') }}" class="link link-primary dark:text-blue-200">Log in</a> om posts te liken of te bookmarken
+							<a href="{{ route('login') }}" class="link link-primary dark:text-gray-200">Log in</a> om posts te liken of te bookmarken
 						</span>
 					@endauth
 				</div>

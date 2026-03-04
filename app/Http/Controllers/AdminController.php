@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Feedback;
 use App\Models\FeedbackReply;
 use App\Models\Post;
+use App\Models\PostNotification;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -41,7 +42,20 @@ class AdminController extends Controller
 			'thumbnail' => request()->file('thumbnail')->store('thumbnails', 'public'),
 		]);
 
-		Post::create($attributes);
+		$post = Post::create($attributes);
+
+		// TODO: Notificatie maken door in user_notifications een ding aan te maken
+		// elke volger van auth()->user() moet een notificatie krijgen
+
+		$followers = auth()->user()->followers()->get();
+
+		foreach($followers as $follower){
+			PostNotification::create([
+				'user_id' => $follower->id,
+				'post_id' => $post['id']
+			]);
+		}
+
 
 		return redirect()->route('home')->with('success', 'Post is aangemaakt!');
 	}

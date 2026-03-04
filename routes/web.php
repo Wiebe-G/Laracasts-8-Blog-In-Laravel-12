@@ -7,6 +7,7 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\BookmarkController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\FeedbackController;
+use App\Http\Controllers\FollowController;
 use App\Http\Controllers\LikesController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\ProfileController;
@@ -111,6 +112,14 @@ Route::middleware('auth')->group(function () {
 		->name('comments.update');
 	Route::delete('/comments/{comment:id}', [CommentController::class, 'destroy'])
 		->name('comments.destroy');
+
+	// Volgen
+	Route::post('/follow/user/{user:id}', [FollowController::class, 'store'])
+		->name('follow.store');
+	Route::delete('/unfollow/user/{user:id}', [FollowController::class, 'destroy'])
+		->name('follow.destroy');
+	Route::get('/settings/notifications', [UsersettingsController::class, 'notifications'])
+		->name('notifications.show');
 });
 
 Route::get('/profile/{user:username}', [ProfileController::class, 'show'])

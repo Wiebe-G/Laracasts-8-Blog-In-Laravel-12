@@ -103,7 +103,10 @@ class Post extends Model
 
 	public function isLikedBy($user): bool
 	{
-		return $this->LikedBy()->where('user_id', $user->id)->exists();
+		if(auth()->user()) {
+			return $this->LikedBy()->where('user_id', $user->id)->exists();
+		}
+		return false;
 	}
 
 	public function views()

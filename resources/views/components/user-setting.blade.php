@@ -13,6 +13,7 @@
 					<x-settings-link name="bookmarks"/>
 					<x-settings-link name="likes"/>
 					<x-settings-link name="feedback"/>
+					<x-settings-link name="notifications"/>
 					<a href="{{ route('profile.show', auth()->user()->username) }}">
 						Profiel
 					</a>

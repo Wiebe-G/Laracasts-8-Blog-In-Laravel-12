@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\UpdateUserInformation;
 use App\Models\Feedback;
 use App\Models\FeedbackReply;
+use App\Models\Post;
+use App\Models\PostNotification;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -113,5 +115,22 @@ class UserSettingsController extends Controller
 	{
 		$feedback->load('reply.user');
 		return view('user-settings.feedback.show', compact('feedback'));
+	}
+
+	public function notifications()
+	{
+		$user = Auth::user();
+		$notifications = PostNotification::where('user_id', $user->id)->paginate();
+		$posts = [];
+		$i = 0;
+		foreach($notifications as $notification) {
+			$post = Post::where('id', $notification->post_id)->first();
+			$posts[$i] = $post;
+			$i++;
+		}
+		return view('user-settings.notifications.index', [
+			'notifications' => $notifications,
+			'posts' => $posts
+		]);
 	}
 }
