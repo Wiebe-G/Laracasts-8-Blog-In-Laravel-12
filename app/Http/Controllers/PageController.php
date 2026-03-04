@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Comment;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Support\Facades\Gate;
@@ -29,6 +30,7 @@ class PageController extends Controller
 
 	public function PostsPage(Post $post)
 	{
+		$comments = Comment::where('post_id', $post->id)->paginate(5);
 		if ($post->published == false) {
 			return back()->with('error' , 'Deze post is niet openbaar');
 		}
@@ -44,6 +46,9 @@ class PageController extends Controller
 			session()->put($key, true);
 		}
 
-		return view('posts.post', compact('post'));
+		return view('posts.post', [
+			'post' => $post,
+			'comments' => $comments,
+		]);
 	}
 }

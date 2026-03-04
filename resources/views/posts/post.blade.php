@@ -117,12 +117,13 @@
 			<section class="col-span-8 col-start-5 mt-10 space-y-6">
 				@include('posts._add-comment-form')
 
-				<span>{{ $post->comments_count }} comments</span>
-				@forelse($post->comments as $comment)
+				<span>{{ count($comments) }} comments</span>
+				@forelse($comments as $comment)
 					<x-post-comment :comment="$comment"/>
 				@empty
 					<div>Nog geen comments. Wees de eerste!</div>
 				@endforelse
+				{{ $comments->links() }}
 			</section>
 		</article>
 	</main>
