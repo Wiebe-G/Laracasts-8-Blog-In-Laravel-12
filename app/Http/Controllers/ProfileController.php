@@ -42,7 +42,11 @@ class ProfileController extends Controller
 		$authUser = auth()->user();
 		$posts = $user->posts()->paginate(5, ['*'], 'posts');
 		$comments = $user->comments()->paginate(5, ['*'], 'comments');
-		$isFollowing = $authUser->followees()->where('user_id', $user->id)->exists();
+		$isFollowing = false;
+		if(auth()->user())
+		{
+			$isFollowing = $authUser->followees()->where('user_id', $user->id)->exists();
+		}
         return view('profile.profile', [
 			'user' => $user,
 			'posts' => $posts,
