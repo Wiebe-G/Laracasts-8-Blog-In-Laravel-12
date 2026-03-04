@@ -7,7 +7,7 @@
 		<div class="aspect-[16/9] w-full flex items-center justify-center rounded-xl">
 			<img src="{{ asset('storage/' . $post->thumbnail) }}"
 			     alt="Blog Post illustration"
-			     class="h-96 bg-base-200 w-full object-contain">
+			     class="h-96 bg-base-200 w-full object-contain dark:bg-gray-700">
 		</div>
 
 		<div class="mt-8 flex flex-col flex-1">
