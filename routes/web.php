@@ -120,6 +120,8 @@ Route::middleware('auth')->group(function () {
 		->name('follow.destroy');
 	Route::get('/settings/notifications', [UsersettingsController::class, 'notifications'])
 		->name('notifications.show');
+	Route::get('/settings/volgend', [UsersettingsController::class, 'following'])
+		->name('following.show');
 });
 
 Route::get('/profile/{user:username}', [ProfileController::class, 'show'])

@@ -14,6 +14,7 @@
 					<x-settings-link name="likes"/>
 					<x-settings-link name="feedback"/>
 					<x-settings-link name="notifications"/>
+					<x-settings-link name="volgend"/>
 					<a href="{{ route('profile.show', auth()->user()->username) }}">
 						Profiel
 					</a>

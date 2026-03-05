@@ -133,4 +133,13 @@ class UserSettingsController extends Controller
 			'posts' => $posts
 		]);
 	}
+
+	public function following()
+	{
+		$user = Auth::user();
+		$followees = $user->followees()->get();
+		return view('user-settings.notifications.following', [
+			'followees' => $followees
+		]);
+	}
 }
